@@ -1,0 +1,21 @@
+---
+layout: post
+status: publish
+published: true
+title: FLISOL
+author: admin
+author_login: admin
+author_email: abdalacerqueira@gmail.com
+wordpress_id: 33
+wordpress_url: http://php-pb.net/v2/?p=33
+date: '2012-03-18 19:41:27 -0300'
+date_gmt: '2012-03-18 19:41:27 -0300'
+categories:
+- eventos
+tags:
+- Eventos
+- FLISOL
+- comunidade
+- php-pb
+---
+<p>Dia 28/04 acontecerá o FLISOL(Festival Latino-americano de instalação de software livre) e o PHP-PB estará presente no evento que acontecerá em PATOS - PB.</p>
