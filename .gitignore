@@ -1,1 +1,5 @@
 _site
+*.prefs
+/*.buildpath
+/*.project
+/.settings
