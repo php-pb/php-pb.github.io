@@ -5,7 +5,7 @@ date:   2014-03-24 17:06:25
 categories: jekyll update
 ---
 
-O novo site é movido pelo Jekyll. E completamente aberto para colaboração por meio do Github. E aí? Já fez o seu pull request?
+O novo site é movido pelo Jekyll. Ele é completamente aberto para colaboração por meio do Github. E aí? Já fez o seu pull request?
 
 {% highlight php %}
 <?php
