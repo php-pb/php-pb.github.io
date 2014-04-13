@@ -1,9 +1,10 @@
 name: PHP-PB
 url: http://php-pb.net
-description: Site da comunidade de PHP da Paraíba
+description: Comunidade de PHP da Paraíba
 
 permalink: /:year/:month/:day/:title/
 paginate: 10
 pygments: true
+markdown: kramdown
 
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
