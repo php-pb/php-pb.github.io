@@ -36,7 +36,7 @@ Como havia comentado na [comunidade PHP-PB](https://groups.google.com/forum/#!fo
 - [Clean Code: Refactoring]({{ site.url }}/files/talks/2014/sunshine/CleanCodeRefactoring.pdf) - [Jeff Carouth](http://joind.in/user/view/6080) (@jcarouth)<br><br>
     Começando com a citação: “Good programmers write code humans can understand.” de Martin Fowler, Jeff Carouth mostra as 2 regras de se conduzir uma refatoração. Ele ainda coloca o antes e o depois dos códigos - adoro isso -, mostrando como o código fica lindo e mais legível depois de uma boa refatorada.
     
-- [Redis Everywhere]({{ site.url }}/files/talks/2014/sunshine/redis-everywhere-sunshinephp-140208173044-phpapp01.pdf) - [Ricard Clau](http://joind.in/user/view/16909) (@@ricardclau)<br><br>
+- [Redis Everywhere]({{ site.url }}/files/talks/2014/sunshine/redis-everywhere-sunshinephp-140208173044-phpapp01.pdf) - [Ricard Clau](http://joind.in/user/view/16909) (@ricardclau)<br><br>
     Seguindo a onda de "Whatever Everywhere", Ricard Clau apresenta muita coisa legal que se pode fazer com o Redis. Everywhere mesmo.
     
 É isso! Mês que vem tem mais. Alguma sugestão de slide?
