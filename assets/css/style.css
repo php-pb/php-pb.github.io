@@ -282,3 +282,7 @@ img.center {
 }
 
 div.post-content{text-align: justify;}
+span.author{
+	display:block;
+	margin-bottom:10px;
+}
