@@ -14,6 +14,7 @@ title: PHP-PB
 			</h1>
 		{% else %}
 			<h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+			<span class="author">Postado por {{ post.author }}</span>
 		{% endif %}
 
 		<div class="post-content">{{ post.content }}</div>
