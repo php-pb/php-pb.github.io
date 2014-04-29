@@ -45,40 +45,50 @@ No PHP-PB usamos [Jekyll](http://jekyllrb.com) para postarmos artigos, este que 
 
 Para criar um novo post, crie um arquivo na pasta `_posts` seguindo a seguinte nomeclatura:
 
-    2014-04-13-sunshine-slides-favoritos.markdown
-
+{% highlight text %}
+2014-04-13-sunshine-slides-favoritos.markdown
+{% endhighlight %}
+<br>
 Todo arquivo de posts precisa ter um cabeçalho seguindo o exemplo a seguir:
 
-    ---
-    layout: post
-    title: Contribuindo com artigos para o site
-    date: 2014-04-29 00:29:00
-    author: Sérgio Vilar
-    categories: 
-    - git
-    - tutorial
-    tags: 
-    - github
-    - contribuindo 
-    - conferência 
-    ---
-    
+{% highlight yaml %}
+---
+layout: post
+title: Contribuindo com artigos para o site
+date: 2014-04-29 00:29:00
+author: Sérgio Vilar
+categories: 
+- git
+- tutorial
+tags: 
+- github
+- contribuindo 
+- conferência 
+---
+{% endhighlight %}
+<br>
 Com o artigo escrito, você pode visualizar o site rodando o Jekyll, mas para isso precisa antes [instalar o *Ruby*](http://www.devmedia.com.br/instalando-o-ruby-on-rails-no-windows/20472) na sua máquina e depois instalar as seguintes dependências:
 
-    gem install jekyll kramdown
-    
+{% highlight sh %}
+gem install jekyll kramdown
+{% endhighlight %}
+<br>
 *Nota do autor:* se não me engano, tanto o linux como o OSX já vêm com o ruby instalado    
 
 Com o Ruby e as dependências instaladas, você pode rodar o Jekyll:
 
-    jekyll serve
-    
+{% highlight sh %}
+jekyll serve
+{% endhighlight %}
+<br>
 Ok, agora que temos nosso artigo pronto, vamos enviá-lo para o nosso repositório no github:
 
-    git add .
-    git commit -m "Adicionado o artigo <titulo_do_artigo>"
-    git push -u origin master    
-    
+{% highlight sh %}
+git add .
+git commit -m "Adicionado o artigo <titulo_do_artigo>"
+git push -u origin master    
+{% endhighlight %}
+<br>    
     
 ## Enviando a solicitação de publicação (Pull Request)
 
