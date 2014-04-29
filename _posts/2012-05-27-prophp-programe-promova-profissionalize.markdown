@@ -3,12 +3,7 @@ layout: post
 status: publish
 published: true
 title: ProPHP (Programe, promova, profissionalize)
-author: abdala
-author_login: abdala
-author_email: abdala.cerqueira@gmail.com
-author_url: http://abda.la
-wordpress_id: 60
-wordpress_url: http://php-pb.net/?p=60
+author: Abdala Cerqueira
 date: '2012-05-27 14:49:37 -0300'
 date_gmt: '2012-05-27 14:49:37 -0300'
 categories:

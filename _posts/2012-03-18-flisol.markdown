@@ -3,11 +3,7 @@ layout: post
 status: publish
 published: true
 title: FLISOL
-author: admin
-author_login: admin
-author_email: abdalacerqueira@gmail.com
-wordpress_id: 33
-wordpress_url: http://php-pb.net/v2/?p=33
+author: Abdala Cerqueira
 date: '2012-03-18 19:41:27 -0300'
 date_gmt: '2012-03-18 19:41:27 -0300'
 categories:

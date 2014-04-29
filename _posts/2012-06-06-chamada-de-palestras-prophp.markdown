@@ -3,12 +3,7 @@ layout: post
 status: publish
 published: true
 title: Chamada de palestras - ProPHP
-author: abdala
-author_login: abdala
-author_email: abdala.cerqueira@gmail.com
-author_url: http://abda.la
-wordpress_id: 64
-wordpress_url: http://php-pb.net/?p=64
+author: Abdala Cerqueira
 date: '2012-06-06 16:27:44 -0300'
 date_gmt: '2012-06-06 16:27:44 -0300'
 categories:

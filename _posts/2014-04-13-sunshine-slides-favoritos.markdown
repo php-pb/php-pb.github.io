@@ -2,7 +2,7 @@
 layout: post
 title: SunshinePHP - Slides favoritos
 date: 2014-04-13 19:00:25
-author: abdala
+author: Abdala Cerqueira
 categories: 
 - slides 
 - conferências 

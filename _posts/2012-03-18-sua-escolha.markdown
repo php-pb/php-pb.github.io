@@ -3,11 +3,7 @@ layout: post
 status: publish
 published: true
 title: Sua escolha
-author: admin
-author_login: admin
-author_email: abdalacerqueira@gmail.com
-wordpress_id: 31
-wordpress_url: http://php-pb.net/v2/?p=31
+author: Abdala Cerqueira
 date: '2012-03-18 19:38:25 -0300'
 date_gmt: '2012-03-18 19:38:25 -0300'
 categories:

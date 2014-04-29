@@ -3,12 +3,7 @@ layout: post
 status: publish
 published: true
 title: Ata reunião - 26/05
-author: abdala
-author_login: abdala
-author_email: abdala.cerqueira@gmail.com
-author_url: http://abda.la
-wordpress_id: 55
-wordpress_url: http://php-pb.net/?p=55
+author: Abdala Cerqueira
 date: '2012-05-27 14:47:42 -0300'
 date_gmt: '2012-05-27 14:47:42 -0300'
 categories:
