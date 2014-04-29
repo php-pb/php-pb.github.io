@@ -25,7 +25,7 @@ O evento teve 55 palestras e, dentre elas, [35 slides](http://joind.in/event/vie
 
 Como havia comentado na [comunidade PHP-PB](https://groups.google.com/forum/#!forum/php-pb), irei fazer uma seleção/comentários dos slides de que mais gostei e irei transformá-los em postagens mensais aqui no site da comunidade.
 
-# Slides
+## Slides
 
 - [Development, By The Numbers]({{ site.url }}/files/talks/2014/sunshine/Development_By_The_Numbers_-_SunshinePHP_14.pdf) -  [Anthony Ferrara](http://joind.in/user/view/19609) (@ircmaxell)<br><br>
     Anthony Ferrara já havia feito essa mesma palestra no [PHPBenelux Conference 2014](http://joind.in/event/view/1509) e o feedback tinha sido muito positivo. Os slides falam sobre Métricas básicas para se verificar a qualidade de um software. O autor utiliza códigos reais na demonstração e faz sugestão de ferramentas para integrar ao fluxo de desenvolvimento.
