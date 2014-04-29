@@ -110,7 +110,7 @@ h3 {
 /*** Structure ***/
 #page {
 	width: 500px;
-	margin: 0 auto;
+	margin: 20px auto;
 	position: relative;
 }
 
@@ -145,11 +145,11 @@ h3 {
 }
 
 #sidebar {
-	position: absolute;
+	position: fixed;
 	text-align: right;
 	width: 160px;
-	top: 0;
-	left: -240px;
+	top: 30px;
+	margin-left: -240px;
 }
 
 #sidebar li {
@@ -172,8 +172,9 @@ article {
 }
 
 article h1 {
-	font-size: 17px;
-	margin: 0 0 10px 0;
+    font-size: 1.9em;
+    border-bottom: 2px solid #cb4b16;
+    margin: 0;
 }
 article h1 a {
 	border: none;
@@ -250,9 +251,6 @@ img.center {
 	}
 
 }
-
-
-
 /*** Icons ***/
 @font-face {
   font-family: 'solarthemeicons';
@@ -286,8 +284,10 @@ img.center {
 	font-size: 65%;
 }
 
-div.post-content{text-align: justify;}
+div.post-content{text-align: justify; font-size: 1em;}
 span.author{
 	display:block;
-	margin-bottom:10px;
+	margin-bottom: 10px;
+    font-style:italic;
+    font-size: 11px;
 }
