@@ -291,3 +291,5 @@ span.author{
     font-style:italic;
     font-size: 11px;
 }
+
+.fancybox-wrap a, .fancybox-wrap a:hover{background-color: transparent; border: none;}
