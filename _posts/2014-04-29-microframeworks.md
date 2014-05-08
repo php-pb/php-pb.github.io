@@ -142,6 +142,7 @@ Vamos criar nossa estrutura de pastas:
 
 * config/
 * src/
+* var/
 * test/
 * web/
 * composer.json
@@ -183,7 +184,10 @@ No arquivo composer.json insira as seguintes linhas:
     "require": {
         "php": ">=5.3.3",
         "silex/silex": "~1.0",
-        "silex/web-profiler": "~1.0"
+        "symfony/class-loader": "~2.4",
+        "symfony/serializer": "~2.4",
+        "symfony/browser-kit": "~2.4",
+        "easyframework/collections": "2.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
@@ -198,4 +202,106 @@ No arquivo composer.json insira as seguintes linhas:
 
 Nós estamos declarando as dependências do silex. Vamos rodar o comando **composer install** para instalarmos nossas dependências. Agora temos tudo pronto para desenvolvermos nossa API.
 
+O próximo passo é definirmos nossas configurações iniciais. Na pasta *config/* editem o arquivo dev.php, nesse arquivo podemos definir as configurações que são de desenvolvimento.
+
+
+```php
+<?php
+
+// include the prod configuration
+require __DIR__ . '/prod.php';
+
+$app['debug'] = true;
+
+```
+
+Agora no nosso arquivo prod.php:
+
+```php
+<?php
+
+//Session
+$app['session.storage.save_path'] = __DIR__ . '/../var/session';
+$app['session.storage.options'] = array('name' => 'phppb');
+
+```
+
+Pronto com isso temos as configurações iniciais da nossa API. Agora precisamos registrar os providers que iremos utilizar. Para isso editamos o arquivo *src/app.php*:
+
+```php
+<?php
+
+use Silex\Application;
+use Silex\Provider\UrlGeneratorServiceProvider;
+
+//Cria um aplicação Silex
+$app = new Application();
+
+//Registra o provedor de geração de URls
+$app->register(new UrlGeneratorServiceProvider());
+
+//Registra o provedor de gerenciador de sessão
+$app->register(new Silex\Provider\SessionServiceProvider());
+
+//Registra o provedor de serialização de dados
+$app->register(new \Silex\Provider\SerializerServiceProvider());
+
+return $app;
+
+```
+
+Notem que vamos utilizar apenas 3 providers do silex:
+
+* **UrlGeneratorServiceProvider** - geração de URls
+* **SessionServiceProvider** - gerenciador de sessão
+* **SerializerServiceProvider** - serialização de dados
+
+Finalmente vamos editar o arquivo principal que é o *src/controllers.php*. Nele iremos criar as funcionalidades de nossa API Rest.
+
+A primeira coisa a fazermos é entendermos o fluxo do Silex:
+
+```php
+
+/**
+ * É executado antes de qualquer rota definida no silex. Nessa funcionalidade especificamos que 
+ * quando o content-type for igual a application/json os dados serão convertidos pelo json_decode
+ **/
+$app->before(function (Request $request) use ($app) {
+    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+        $data = json_decode($request->getContent(), true);
+        $request->request->replace(is_array($data) ? $data : array());
+    }
+});
+
+/**
+ * É executado depois de qualquer rota definida no silex. Especificamos que o content-type
+ * de retorno será o do tipo requisitado pelo Request.
+ **/
+$app->after(function (Request $request, Response $response) {
+    $format = $request->attributes->get('format');
+    $response->headers->set('Content-Type', $request->getMimeType($format));
+});
+
+//É executado quando ocorrer um erro na aplicação
+$app->error(function (Exception $e, $code) use ($app) {
+    return new Response($app->json(array('message' => $e->getMessage(), 'code' => $code)), $code);
+});
+```
+
+Ótimo, agora temos nosso fluxo definido. Vamos entender como o REST funciona:
+
+
+Definição da API
+---
+
+**Descrição**: Criar uma API para acessar dados de usuários.
+
+
+| Method        | Uri           | Descrição                  | Retorno   |
+| ------------- |:-------------:| --------------------------:| ---------:|
+| GET           | /users        | Recupera todos os usuários | json-xml  |
+| POST          | /user         | Cria um usuário            | json-xml  |
+| GET           | /user/{id}    | Visualiza um usuário       | json-xml  |
+| PUT           | /user/{id}    | Edita um usuário           | json-xml  |
+| DELETE        | /user/{id}    | Exclui um usuário          | json-xml  |
 
