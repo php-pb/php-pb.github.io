@@ -4,17 +4,17 @@ title: Microframeworks
 date: 2014-04-29 00:29:00
 author: Ítalo Lelis de Vietro
 categories: 
-- frameworks
-- tutorial
+    - frameworks
+    - tutorial
 tags: 
-- github
-- slim 
-- silex
-- microframeworks
-- frameworks
+    - github
+    - slim 
+    - silex
+    - microframeworks
+    - frameworks
 ---
 
-Voxê já deve ter ouvido falar em microframeworks, mas qual o propósito deles? Qual a diferença entre eles e os full-stack frameworks que estamos acostumados (Symfony, Zend, CodeIgniter....)? Eles resolvem todos os problemas? 
+Você já deve ter ouvido falar em microframeworks, mas qual o propósito deles? Qual a diferença entre eles e os full-stack frameworks que estamos acostumados (Symfony, Zend, CodeIgniter....)? Eles resolvem todos os problemas? 
 
 Nesse artigo iremos *mergulhar* em um universo que irá desvendar esses mistérios....
 Então vamos lá :D
@@ -202,6 +202,46 @@ No arquivo composer.json insira as seguintes linhas:
 
 Nós estamos declarando as dependências do silex. Vamos rodar o comando **composer install** para instalarmos nossas dependências. Agora temos tudo pronto para desenvolvermos nossa API.
 
+No arquivo index.php, insira:
+
+```php
+<?php
+
+ini_set('display_errors', -1);
+
+$loader = require_once __DIR__ . '/../vendor/autoload.php';
+
+$app = require __DIR__ . '/../src/app.php';
+require __DIR__ . '/../config/prod.php';
+require __DIR__ . '/../src/controllers.php';
+$app->run();
+
+```
+
+No arquivo index_dev.php, insira:
+
+```php
+<?php
+
+use Symfony\Component\ClassLoader\DebugClassLoader;
+use Symfony\Component\HttpKernel\Debug\ErrorHandler;
+use Symfony\Component\HttpKernel\Debug\ExceptionHandler;
+
+$loader = require_once __DIR__ . '/../vendor/autoload.php';
+
+error_reporting(-1);
+DebugClassLoader::enable();
+ErrorHandler::register();
+if ('cli' !== php_sapi_name()) {
+    ExceptionHandler::register();
+}
+
+$app = require __DIR__ . '/../src/app.php';
+require __DIR__ . '/../config/dev.php';
+require __DIR__ . '/../src/controllers.php';
+$app->run();
+```
+
 O próximo passo é definirmos nossas configurações iniciais. Na pasta *config/* editem o arquivo dev.php, nesse arquivo podemos definir as configurações que são de desenvolvimento.
 
 
@@ -298,10 +338,150 @@ Definição da API
 
 
 | Method        | Uri           | Descrição                  | Retorno   |
-| ------------- |:-------------:| --------------------------:| ---------:|
+| ------------- |:-------------:| ---------------------------| :--------:|
 | GET           | /users        | Recupera todos os usuários | json-xml  |
 | POST          | /user         | Cria um usuário            | json-xml  |
 | GET           | /user/{id}    | Visualiza um usuário       | json-xml  |
 | PUT           | /user/{id}    | Edita um usuário           | json-xml  |
 | DELETE        | /user/{id}    | Exclui um usuário          | json-xml  |
 
+
+Entendido oo que precisamos implementar, vamos começar pelo datasource, que será onde guardaremos os dados. Optei por utilizar a sessão para não deixar o exemplo complexo. Dessa forma no começo do arquivo colocamos:
+
+
+```php
+<?php
+
+if (!$app['session']->has('datasource')) {
+    $app['session']->set('datasource', new \Easy\Collections\ArrayList(array(
+        new \PhpPb\Entity\User(1, 'Anderson'),
+        new \PhpPb\Entity\User(2, 'Maria'),
+        new \PhpPb\Entity\User(3, 'Anabella'),
+        new \PhpPb\Entity\User(4, 'Lindsey'),
+        new \PhpPb\Entity\User(5, 'Rose')
+            ))
+    );
+}
+
+$datasource = $app['session']->get('datasource');
+```
+
+Esses serão os dados iniciais utilizados, isso sumulará um Banco de dados. Com isso feito vamos criar a funcionalidade de listar os usuários, que irá responder a url */users*
+
+```php
+<?php
+
+$app->get('/users', function(Silex\Application $app, Request $request) use($datasource) {
+    //Setamos o tipo do formato que vem do request
+    $format = $request->getContentType();
+    $request->attributes->set('format', $format);
+    
+    //Retornamos um Response serializando a collection
+    return new Response($app['serializer']->serialize($datasource->toArray(), $format));
+});
+
+```
+
+Para consumirmos esse serviço, no seu terminal faça um curl:
+
+```bash
+curl --include --request GET 'https://localhost/silex-restful-exemple/web/index_dev.php/users' --header "Content-Type: application/json"
+```
+Resultado:
+
+```json
+[{"id":1,"name":"Anderson"},{"id":2,"name":"Maria"},{"id":3,"name":"Anabella"},{"id":4,"name":"Lindsey"},{"id":5,"name":"Rose"}
+```
+
+Para criarmos um novo usuário:
+
+```php
+$app->post('/user', function(Silex\Application $app, Request $request) use($datasource) {
+    //Decodificamos os dados que vem do request
+    $json = json_decode($request->getContent());
+
+    //Criamos um novo usuário e adicionamos no datasource
+    $user = new \PhpPb\Entity\User((int) $json->id, $json->name);
+    $datasource->add($user);
+
+    //Atualizamos a sessão com o datasource
+    $app['session']->set('datasource', $datasource);
+    
+    //Setamos o tipo do formato que vem do request
+    $format = $request->getContentType();
+    $request->attributes->set('format', $format);
+
+    //Serializamos o usuário criado e retornamos
+    return new Response($app['serializer']->serialize($user, $format));
+})
+;
+```
+
+Para recuperar um usuário:
+
+```php
+$app->get('/user/{user}', function(Silex\Application $app, Request $request, \PhpPb\Entity\User $user) use($datasource) {
+            //Setamos o tipo do formato que vem do request
+            $format = $request->getContentType();
+            $request->attributes->set('format', $format);
+            
+            //Serializamos o usuário encontrado no datasource
+            return new Response($app['serializer']->serialize($user, $format));
+        })
+        ->convert('user', 'converter.user:convert')
+;
+```
+
+Notem que existe um método a mais chamado convert, ele é responsável por pegar o id do usuário e encontra-lo no datasource. Dessa forma podemos receber como parâmetro da nossa função anônima *\PhpPb\Entity\User $user*.
+
+Para atualizar um usuário:
+
+```php
+$app->put('/user/{user}', function(Silex\Application $app, Request $request, \PhpPb\Entity\User $user) use($datasource) {
+            //Decodificamos os dados que vem do request
+            $json = json_decode($request->getContent());
+            
+            //Setamos os dados atualizados
+            $user->setName($json->name);
+
+            //Atualizamos a sessão com o datasource
+            $app['session']->set('datasource', $datasource);
+            
+            //Setamos o tipo do formato que vem do request
+            $format = $request->getContentType();
+            $request->attributes->set('format', $format);
+
+            //Serializamos o usuário criado e retornamos
+            return new Response($app['serializer']->serialize($user, $format));
+        })
+        ->convert('user', 'converter.user:convert')
+;
+```
+
+Para excluir um usuário:
+
+```php
+$app->delete('/user/{user}', function(Silex\Application $app, Request $request, \PhpPb\Entity\User $user) use($datasource) {
+            //Remove o usuário do datasource
+            $datasource->removeValue($user);
+            
+            //Atualizamos a sessão com o datasource
+            $app['session']->set('datasource', $datasource);
+            
+            //Setamos o tipo do formato que vem do request
+            $format = $request->getContentType();
+            $request->attributes->set('format', $format);
+
+            //Retornamos o código 204 que significa No content, do padrão do Rest
+            return new Response('', 204);
+        })
+        ->convert('user', 'converter.user:convert')
+;
+```
+
+Com isso temos uma API Restfull completamente funcional e simples. A medida que a aplicação vai crescendo vamos sentir a necessidade de separar mais as coisas, em um artigo futuro irei mostrar como melhorarmos esse exemplo simples.
+
+Para acessar o código completo com os testes e os converters completos, acessem: https://github.com/italolelis/silex-restful-example
+Qualquer melhoria é aceita e será legal colaboramos para melhoramos esse código.
+
+Agradeço a todos por terem acompanhado esse artigo. Até a próxima.
