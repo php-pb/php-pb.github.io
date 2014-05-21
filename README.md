@@ -8,7 +8,7 @@ Site do php-pb, nos acompanhe também em outros canais:
 
 * [Grupo no Google](http://groups.google.com/group/php-pb?hl=pt-BR)
 * [Grupo no Facebook](https://www.facebook.com/groups/176265189091628/)
-* [Grupo no Freenode](irc://irc.freenode.net:6667/#php-pb)
+* Grupo no Freenode - irc://irc.freenode.net:6667/#php-pb
 * [Página no Facebook](https://www.facebook.com/pages/PHP-PB/153629998034618)
 * [Página no About](http://about.me/phppb)
 
