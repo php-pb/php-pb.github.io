@@ -1,6 +1,6 @@
 Grupo de desenvolvedores PHP da Paraíba
 ==================
-##[http://www.php-pb.net](http://www.php-pb.net)
+##[php-pb.net](http://www.php-pb.net)
 
 Temos como objetivo reunir os membros do grupo, estudantes e profissionais da área de TI para troca de conhecimentos na tecnologia PHP e relacionadas.
 
