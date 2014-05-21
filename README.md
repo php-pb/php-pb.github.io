@@ -1,10 +1,18 @@
-Contribuindo
----------
+Grupo de desenvolvedores PHP da Paraíba
+==================
+##[http://www.php-pb.net](http://www.php-pb.net)
 
-Para contribuir basta fazer um *fork* deste repositório, cloná-lo para sua máquina e instalar as dependências:
+Temos como objetivo reunir os membros do grupo, estudantes e profissionais da área de TI para troca de conhecimentos na tecnologia PHP e relacionadas.
 
-	gem install jekyll kramdown
+Site do php-pb, nos acompanhe também em outros canais:
 
-Após isso você pode testar o projeto na sua máquina:
+* [Grupo no Google](http://groups.google.com/group/php-pb?hl=pt-BR)
+* [Grupo no Facebook](https://www.facebook.com/groups/176265189091628/)
+* [Grupo no Freenode](irc://irc.freenode.net:6667/#php-pb)
+* 
+* [Página no Facebook](https://www.facebook.com/pages/PHP-PB/153629998034618)
+* [Página no About](http://about.me/phppb)
 
-	jekyll serve	
+## Como submeter seu post
+
+Antes de tudo, se você nunca usou o Github, confira [este artigo](http://php-pb.net/2014/04/28/contribuindo-com-artigos/) que ensina como contribuir em repositórios com o Jekyll.
