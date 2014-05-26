@@ -24,9 +24,9 @@ O que são?
 
 Os microframeworks vieram com um propósito totalmente diferente dos full-stack. Muitas pessoas pensam que eles foram feitos para projetos pequenos (o que iremos ver que não é verdade). Eles foram projetados para diferentes arquiteturas.... Mas como assim?
 
-Os full-stack frameworks muitas vezes nos prendem a uma determinada arquitetura ou estrutura da aplicação que temos uma grande dificuldade quando queremos modifica-la, mesmo que hoje a moda seja frameworks modulares, eles ainda definem a estrutura dos módulos, classes, e outras partes específicas. Isso não é ruim, mas em determinados problemas eles podem não ajudar muito.
+Os full-stack frameworks muitas vezes nos prendem a uma determinada arquitetura ou estrutura da aplicação onde podemos ter uma grande dificuldade quando queremos modifica-la, mesmo que hoje a moda seja frameworks modulares, eles ainda definem a estrutura dos módulos, classes, e outras partes específicas. Isso não é ruim, mas em determinados cenários eles podem não ajudar muito.
 
-Já os microframeworks trabalham de forma independente de arquiteturas ou restrições de estruturas de pastas, isso não quer dizer que não tenha organização, mas sim que você pode criar sua estrutura. Isso é possível porque eles foram feitos para não resolver todos os problemas existentes, existe um foco, eles foram criados para resolver problemas específicos (ou quebra-los em problemas menores). Umas das aplicações mais famosas para os microframeworks é a criação de webservices em cima da arquitetura REST, que iremos abordar mais a frente.
+Já os microframeworks trabalham de forma independente de arquiteturas ou restrições de estruturas de pastas, isso não quer dizer que não tenham organização, mas sim que você pode criar sua estrutura. Isso é possível porque eles foram feitos para não resolver todos os problemas existentes, existe um foco, eles foram criados para resolver problemas específicos (ou quebra-los em pedaços menores). Umas das aplicações mais famosas para os microframeworks é a criação de webservices em cima da arquitetura REST, que iremos abordar mais a frente.
 
 *Definição Pessoal*: Os microframeworks permitem a definição de vários componentes onde podemos anexa-los a uma arquitetura flexível, ou seja, podemos criar uma arquitetura (REST, Restful, MVC, Camadas, Modular, etc...) e utilizar os componentes que desejamos (ORM, Log, OAuth, etc...) como *"plugins"* para criarmos uma solução robusta, mas ao mesmo tempo simples de implementar.
 
@@ -87,7 +87,7 @@ function hello()
 run();
 ```
 
-Notem que os comportamentos são muito parecidos entre eles. Com poucas linhas de código já temos um resultado na tela, mas claro que vale lembrar que com essas poucas linhas temos uma gama de funcionalidades que eles disponibilizam para nós. Vamos utilizar o Silex para os exemplos a seguir.
+Notem que os comportamentos são muito parecidos entre eles. Com poucas linhas de código já temos um resultado, claro que vale lembrar que com essas poucas linhas temos uma gama de funcionalidades que eles disponibilizam para nós. Vamos utilizar o Silex para os exemplos a seguir.
 
 A maioria dos microframeworks disponibilizam componentes que encapsulam as soluções e provem uma série de métodos para utilizarmos, por exemplo:
 
@@ -183,7 +183,7 @@ No arquivo composer.json insira as seguintes linhas:
     ],
     "require": {
         "php": ">=5.3.3",
-        "silex/silex": "~1.0",
+        "silex/silex": "~1.2",
         "symfony/class-loader": "~2.4",
         "symfony/serializer": "~2.4",
         "symfony/browser-kit": "~2.4",
@@ -479,7 +479,7 @@ $app->delete('/user/{user}', function(Silex\Application $app, Request $request, 
 ;
 ```
 
-Com isso temos uma API Restfull completamente funcional e simples. A medida que a aplicação vai crescendo vamos sentir a necessidade de separar mais as coisas, em um artigo futuro irei mostrar como melhorarmos esse exemplo simples.
+Com isso temos uma API Restfull completamente funcional e simples. A medida que a aplicação vai crescendo vamos sentir a necessidade de separar mais as coisas. Em um artigo futuro irei mostrar como melhorarmos esse exemplo simples.
 
 Para acessar o código completo com os testes e os converters completos, acessem: https://github.com/italolelis/silex-restful-example
 Qualquer melhoria é aceita e será legal colaboramos para melhoramos esse código.
