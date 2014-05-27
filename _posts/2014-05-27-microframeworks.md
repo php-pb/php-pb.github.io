@@ -93,7 +93,7 @@ Notem que os comportamentos são muito parecidos entre eles. Com poucas linhas d
 A maioria dos microframeworks disponibilizam componentes que encapsulam as soluções e provem uma série de métodos para utilizarmos, por exemplo:
 
 Para utilizarmos ORM em nossa aplicação:
-{% endhighlight %}json
+{% highlight json %}
 //no composer.json
 "dflydev/doctrine-orm-service-provider": "v1.0.3"
 {% endhighlight %}
@@ -169,7 +169,7 @@ E por fim na pasta web criamos dois arquivos também:
 
 No arquivo composer.json insira as seguintes linhas:
 
-{% endhighlight %}json
+{% highlight json %}
 {
     "name": "phppb/silex-restful-exemple",
     "description": "Exemplo de uma API restful simples para o silex",
@@ -385,12 +385,12 @@ $app->get('/users', function(Silex\Application $app, Request $request) use($data
 
 Para consumirmos esse serviço, no seu terminal faça um curl:
 
-{% endhighlight %}bash
+{% highlight sh %}
 curl --include --request GET 'https://localhost/silex-restful-exemple/web/index_dev.php/users' --header "Content-Type: application/json"
 {% endhighlight %}
 Resultado:
 
-{% endhighlight %}json
+{% highlight json %}
 [{"id":1,"name":"Anderson"},{"id":2,"name":"Maria"},{"id":3,"name":"Anabella"},{"id":4,"name":"Lindsey"},{"id":5,"name":"Rose"}
 {% endhighlight %}
 
