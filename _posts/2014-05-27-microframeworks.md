@@ -100,6 +100,7 @@ Para utilizarmos ORM em nossa aplicação:
 
 Para utilizarmos ORM em nossa aplicação:
 {% highlight php %}
+<?php
 //Carregamos o silex via composer
 require_once __DIR__.'/../vendor/autoload.php'; 
 
@@ -302,7 +303,7 @@ Finalmente vamos editar o arquivo principal que é o *src/controllers.php*. Nele
 A primeira coisa a fazermos é entendermos o fluxo do Silex:
 
 {% highlight php %}
-
+<?php
 /**
  * É executado antes de qualquer rota definida no silex. Nessa funcionalidade especificamos que 
  * quando o content-type for igual a application/json os dados serão convertidos pelo json_decode
@@ -397,6 +398,7 @@ Resultado:
 Para criarmos um novo usuário:
 
 {% highlight php %}
+<?php
 $app->post('/user', function(Silex\Application $app, Request $request) use($datasource) {
     //Decodificamos os dados que vem do request
     $json = json_decode($request->getContent());
@@ -421,6 +423,7 @@ $app->post('/user', function(Silex\Application $app, Request $request) use($data
 Para recuperar um usuário:
 
 {% highlight php %}
+<?php
 $app->get('/user/{user}', function(Silex\Application $app, Request $request, \PhpPb\Entity\User $user) use($datasource) {
             //Setamos o tipo do formato que vem do request
             $format = $request->getContentType();
@@ -438,6 +441,7 @@ Notem que existe um método a mais chamado convert, ele é responsável por pega
 Para atualizar um usuário:
 
 {% highlight php %}
+<?php
 $app->put('/user/{user}', function(Silex\Application $app, Request $request, \PhpPb\Entity\User $user) use($datasource) {
             //Decodificamos os dados que vem do request
             $json = json_decode($request->getContent());
@@ -462,6 +466,7 @@ $app->put('/user/{user}', function(Silex\Application $app, Request $request, \Ph
 Para excluir um usuário:
 
 {% highlight php %}
+<?php
 $app->delete('/user/{user}', function(Silex\Application $app, Request $request, \PhpPb\Entity\User $user) use($datasource) {
             //Remove o usuário do datasource
             $datasource->removeValue($user);
