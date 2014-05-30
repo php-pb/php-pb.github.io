@@ -46,7 +46,7 @@
         $(document).ready(function(){
             $('#sidebar nav ul').mobileMenu({'topOptionText': 'Menu', 'prependTo': '#sidebar nav'});
             
-            $('#content img').each(function(){
+            $('#content img').not('.no-fancybox').each(function(){
                 $(this).wrap('<a class="fancybox" rel="group" href="'+ this.src + '"></a>');
             });
             
