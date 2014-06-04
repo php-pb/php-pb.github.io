@@ -84,7 +84,7 @@ Você verá um output similar a este:
 
 Note que, ao final do processo, o provisionador Shell é executado, e você verá o output "Hello World!". Esse comando está sendo executado dentro da máquina virtual, a máquina **Guest**. 
 
-### Nota: Executando os Provisionadores
+#### Nota: Executando os Provisionadores
 
 Por padrão, os provisionadores só são executados na primeira vez que você roda um `vagrant up`, quando o ambiente é criado. Nas próximas vezes que você for usar o ambiente, ele já estará pronto, por isso o Vagrant não irá executar por padrão os provisionadores novamente - isso economiza bastante tempo no dia a dia. Mas há ocasiões em que precisamos executar os provisionadores novamente - principalmente quando estamos criando e ajustando os scripts de provisionamento.
 
@@ -98,16 +98,16 @@ O Vagrant suporta várias ferramentas de automação. As mais populares são: Pu
 
 ### Comparação entre ferramentas
 
-Para ajudá-lo a escolher a ferramenta de automação ideal, segue um resumo das principais diferenças entre elas, de maneira que você possa compará-las entre si e escolher aquela com a qual você se identifica mais.
+Segue um resumo das principais diferenças entre as ferramentas de automações mais usadas como provisionadores do Vagrant, de maneira que você possa compará-las entre si e escolher aquela com a qual você se identifica mais.
 
 #### Puppet
 
-- Syntaxe usada: linguagem customizada baseada no Ruby
-- Ordem de execução: **não sequencial** - você precisa definir dependências entre as tarefas
-- Popularidade: a mais popular, exceto para desenvolvedores Ruby.
-- Documentação: um pouco confusa
-- Curva de aprendizado: média
-- Dependências (Vagrant): não é preciso instalar nenhum pacote adicional para usar Puppet como provisionador
+- **Syntaxe usada** linguagem customizada baseada no Ruby
+- **Ordem de execução** **não sequencial** - você precisa definir dependências entre as tarefas
+- **Popularidade** a mais popular, exceto para desenvolvedores Ruby.
+- **Documentação** um pouco confusa
+- **Curva de aprendizado** média
+- **Dependências (Vagrant)** não é preciso instalar nenhum pacote adicional para usar Puppet como provisionador
 
 Exemplo de definição de tarefas:
 
@@ -126,12 +126,12 @@ Repare que precisamos usar um **require** na instalação do pacote _Nginx_, par
 
 #### Chef
 
-- Syntaxe usada: Ruby 
-- Ordem de execução: sequencial
-- Popularidade: segunda mais popular, primeira entre desenvolvedores Ruby. 
-- Documentação: caótica!
-- Curva de aprendizado: alta, você precisa aprender um pouco de Ruby para escrever os scripts
-- Dependências (Vagrant): não é preciso instalar nenhum pacote adicional para usar Chef como provisionador
+- **Syntaxe usada** Ruby 
+- **Ordem de execução** sequencial
+- **Popularidade** segunda mais popular, primeira entre desenvolvedores Ruby. 
+- **Documentação** caótica!
+- **Curva de aprendizado** alta, você precisa aprender um pouco de Ruby para escrever os scripts
+- **Dependências (Vagrant)** não é preciso instalar nenhum pacote adicional para usar Chef como provisionador
 
 Exemplo de definição de tarefas:
 
@@ -147,12 +147,12 @@ end
 
 #### Ansible
 
-- Syntaxe usada: YAML
-- Ordem de execução: sequencial
-- Popularidade: terceira mais popular
-- Documentação: clara e objetiva
-- Curva de aprendizado: pequena
-- Dependências (Vagrant): você precisará instalar o Ansible na máquina Host para usá-lo como provisionador
+- **Syntaxe usada** YAML
+- **Ordem de execução** sequencial
+- **Popularidade** terceira mais popular
+- **Documentação** clara e objetiva
+- **Curva de aprendizado** pequena
+- **Dependências (Vagrant)** você precisará instalar o Ansible na máquina Host para usá-lo como provisionador
 
 Exemplo de definição de tarefas:
 
