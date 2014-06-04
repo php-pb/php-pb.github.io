@@ -60,7 +60,7 @@ A primeira coisa que precisamos fazer é criar um arquivo Vagrantfile. O Vagrant
 
 Abaixo, um exemplo de um Vagrantfile super básico:
 
-~~~~~~~~
+{% highlight ruby %}
 Vagrant.configure("2") do |config|
 
     config.vm.box = "hashicorp/precise64"
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", inline: "echo Hello World!"
 
 end
-~~~~~~~~
+{% endhighlight %}
 
 Esse é o exemplo mais simples que mostra o processo completo, incluindo um provisionador. Estamos aqui usando a [Vagrant Cloud](https://vagrantcloud.com/) para obtermos nossa box - dessa maneira não precisamos definir também a URL onde o arquivo .box está disponível. Esse é um recurso novo da versão **1.5** do Vagrant. Você pode descobrir outras boxes, com outros sistemas operacionais, na seção **[Discover](https://vagrantcloud.com/discover/featured)** da VagrantCloud. Neste exemplo, usamos a box atualmente mais popular do Vagrant - Ubuntu 12.04 64 bits.
 
@@ -111,7 +111,7 @@ Segue um resumo das principais diferenças entre as ferramentas de automações 
 
 Exemplo de definição de tarefas:
 
-~~~~~~~~
+{% highlight ruby %}
 exec { 'apt-get update':
   command => 'apt-get update'
 }
@@ -120,7 +120,7 @@ package { 'nginx':
   ensure => 'installed'
   require => Exec['apt-get update']
 }
-~~~~~~~~
+{% endhighlight %}
 
 Repare que precisamos usar um **require** na instalação do pacote _Nginx_, para termos certeza de que a primeira tarefa, que roda `apt-get update`, seja executada **antes**. Se não usarmos o _require_, não há nenhuma garantia sobre a ordem de execução das tarefas.
 
@@ -135,7 +135,7 @@ Repare que precisamos usar um **require** na instalação do pacote _Nginx_, par
 
 Exemplo de definição de tarefas:
 
-~~~~~~~~
+{% highlight ruby %}
 execute "apt-get update" do
   command "apt-get update"
 end
@@ -143,7 +143,7 @@ end
 apt_package "nginx" do
   action :install
 end
-~~~~~~~~
+{% endhighlight %}
 
 #### Ansible
 
@@ -156,13 +156,13 @@ end
 
 Exemplo de definição de tarefas:
 
-~~~~~~~~
+{% highlight yaml %}
 - name: Update apt-cache
   apt: update_cache=yes
 
 - name: Install Nginx
   apt: pkg=nginx state=latest
-~~~~~~~~
+{% endhighlight %}
 
 
 ### Recursos para Iniciantes
