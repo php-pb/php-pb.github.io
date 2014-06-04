@@ -56,7 +56,7 @@ Para um setup básico, você precisará instalar o Vagrant e o VirtualBox em sua
 
 ## Primeiros Passos
 
-Vamos começar com um exemplo bem básico utilizando um simples shell script como provisionador, só para que você entenda como o processo todo funciona. A primeira coisa que precisamos fazer é criar um arquivo Vagrantfile. O Vagrantfile é o arquivo de configuração do seu ambiente de desenvolvimento.
+A primeira coisa que precisamos fazer é criar um arquivo Vagrantfile. O Vagrantfile é o arquivo de configuração do seu ambiente de desenvolvimento.
 
 Abaixo, um exemplo de um Vagrantfile super básico:
 
@@ -80,7 +80,7 @@ $ vagrant up
 
 Você verá um output similar a este:
 
-(image)
+![output](http://i.imgur.com/q0EqBmY.png)
 
 Note que, ao final do processo, o provisionador Shell é executado, e você verá o output "Hello World!". Esse comando está sendo executado dentro da máquina virtual, a máquina **Guest**. 
 
