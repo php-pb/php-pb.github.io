@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mongo, Mongol, Mongolão
+title: Mongo, Mongolão
 date: 2014-05-26 16:00:00
 author: Ítalo Queiroz
 categories: 
@@ -14,10 +14,6 @@ tags:
 ---
 
 ### O que é esse MongoDB?
-
-<center>
-<iframe style="align:center" src="https://giphy.com/embed/7B6hvCLsQQBPO" width="500" height="230" frameBorder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-</center>
 
 É um banco de dados orientado a documentos, classificado como NoSQL e foi escrito em C++.
 
