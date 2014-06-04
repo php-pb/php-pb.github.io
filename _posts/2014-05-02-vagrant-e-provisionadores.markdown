@@ -18,6 +18,8 @@ tags:
 ## Por que usar Vagrant
 Que atire a primeira pedra quem nunca usou a desculpa "funciona na minha máquina". Muitas vezes nem lembramos quais pacotes temos instalados no nosso ambiente de desenvolvimento, é bastante comum que tudo funcione perfeito na nossa máquina e quando fazemos deploy, BOOM...
 
+![batman](http://i.imgur.com/pdclwXs.jpg)
+
 E quando surge um projeto novo, com dependências bem específicas, um banco de dados diferente, ou pacotes que não parecem muito estáveis? Instalar tudo isso na sua máquina é sempre bastante arriscado, principalmente se você não vai mais usar tais dependências no futuro - o que acontece com certa frequência. Sem contar projetos legados, usando versões antigas do PHP - um simples, pequeno bugfix, pode se tornar uma dor de cabeça enorme.
 
 O Vagrant surgiu para dar um basta a esses problemas. Vagrant (traduzido como "Vagabundo", porém no sentido de não ter casa fixa) gerencia a criação de ambientes de desenvolvimento, normalmente utilizando máquinas virtuais. Você pode usar ferramentas de automação para criar o servidor do jeito que quiser, definindo tudo em arquivos que irão fazer parte da árvore do seu projeto. Dessa maneira, qualquer pessoa que clonar o seu repositório poderá rodar uma instância desse ambiente de desenvolvimento, que será exatamente igual para todo mundo, reduzindo ao máximo os problemas que surgem por causa das diferenças entre sistemas operacionais e configurações de sistema. Projetos Open Source vêm popularizando cada vez mais o Vagrant, porque fica bem mais fácil para outras pessoas contribuirem: com apenas um comando - vagrant up  - o projeto estará rodando e pronto para ser trabalhado.
@@ -26,9 +28,7 @@ O Vagrant surgiu para dar um basta a esses problemas. Vagrant (traduzido como "V
 
 Existem 2 "atores" que executam papéis distintos e muito importantes no Vagrant: o _provedor_ (provider) e o _provisionador_ (provisioner). O **provedor** é responsável por criar uma instância de um ambiente, geralmente uma máquina virtual, com um sistema operacional básico instalado. Para ter seu ambiente de desenvolvimento pronto, você precisará executar uma série de tarefas, como instalação de pacotes e configuração do sistema - isso tudo é feito pelo **provisionador**. O provisionador é responsável por configurar o ambiente de maneira automatizada, assim temos um ambiente de desenvolvimento totalmente reproduzível e portátil.
 
-A imagem abaixo exemplifica como o processo é administrado pelo Vagrant:
-
-(image)
+![como funciona](http://i.imgur.com/RnlvjUO.png)
 
 ## Terminologia do Vagrant
 - **Vagrantfile** - arquivo que contém as definições para criar a máquina virtual 
@@ -74,9 +74,9 @@ Esse é o exemplo mais simples que mostra o processo completo, incluindo um prov
 
 Como vocês podem ver, usamos o provisionador Shell, passando um comando inline. Agora, vamos rodar esse ambiente - para isso, acesse a pasta onde o Vagrantfile está localizado, pelo terminal, e execute:
 
-~~~~~~~~
+{% highlight sh %}
 $ vagrant up
-~~~~~~~~
+{% endhighlight %}
 
 Você verá um output similar a este:
 
@@ -102,12 +102,12 @@ Segue um resumo das principais diferenças entre as ferramentas de automações 
 
 #### Puppet
 
-- **Syntaxe usada** linguagem customizada baseada no Ruby
-- **Ordem de execução** **não sequencial** - você precisa definir dependências entre as tarefas
-- **Popularidade** a mais popular, exceto para desenvolvedores Ruby.
-- **Documentação** um pouco confusa
-- **Curva de aprendizado** média
-- **Dependências (Vagrant)** não é preciso instalar nenhum pacote adicional para usar Puppet como provisionador
+- **Syntaxe usada** - linguagem customizada baseada no Ruby
+- **Ordem de execução** - **não sequencial** - você precisa definir dependências entre as tarefas
+- **Popularidade** - a mais popular, exceto para desenvolvedores Ruby.
+- **Documentação** - um pouco confusa
+- **Curva de aprendizado** - média
+- **Dependências (Vagrant)** - não é preciso instalar nenhum pacote adicional para usar Puppet como provisionador
 
 Exemplo de definição de tarefas:
 
@@ -126,12 +126,12 @@ Repare que precisamos usar um **require** na instalação do pacote _Nginx_, par
 
 #### Chef
 
-- **Syntaxe usada** Ruby 
-- **Ordem de execução** sequencial
-- **Popularidade** segunda mais popular, primeira entre desenvolvedores Ruby. 
-- **Documentação** caótica!
-- **Curva de aprendizado** alta, você precisa aprender um pouco de Ruby para escrever os scripts
-- **Dependências (Vagrant)** não é preciso instalar nenhum pacote adicional para usar Chef como provisionador
+- **Syntaxe usada** - Ruby 
+- **Ordem de execução** - sequencial
+- **Popularidade** - segunda mais popular, primeira entre desenvolvedores Ruby. 
+- **Documentação** - caótica!
+- **Curva de aprendizado** - alta, você precisa aprender um pouco de Ruby para escrever os scripts
+- **Dependências (Vagrant)** - não é preciso instalar nenhum pacote adicional para usar Chef como provisionador
 
 Exemplo de definição de tarefas:
 
@@ -147,12 +147,12 @@ end
 
 #### Ansible
 
-- **Syntaxe usada** YAML
-- **Ordem de execução** sequencial
-- **Popularidade** terceira mais popular
-- **Documentação** clara e objetiva
-- **Curva de aprendizado** pequena
-- **Dependências (Vagrant)** você precisará instalar o Ansible na máquina Host para usá-lo como provisionador
+- **Syntaxe usada** - YAML
+- **Ordem de execução** - sequencial
+- **Popularidade** - terceira mais popular
+- **Documentação** - clara e objetiva
+- **Curva de aprendizado** - pequena
+- **Dependências (Vagrant)** - você precisará instalar o Ansible na máquina Host para usá-lo como provisionador
 
 Exemplo de definição de tarefas:
 
@@ -175,6 +175,8 @@ Para ter um ponto de partida prático e fácil, você também pode usar uma ferr
 - [Phansible](http://phansible.com) -  inspirado pelo PuPHPet, usa Ansible como provisionador. Lançado há poucos meses, possui recursos básicos mas já é possível criar um provisionamento de diferentes web servers com PHP, incluindo HHVM.
 
 O Phansible é um projeto open source criado por mim como uma alternativa ao já popular PuPHPet. Estamos trabalhando na implementação de novos recursos, e aceitamos [contribuições](https://github.com/Phansible/phansible) :)
+
+Se você quer conhecer mais recursos do Vagrant, incluindo as novidades lançadas nas últimas versões, fique de olho na versão em português do [Vagrant Cookbook](https://leanpub.com/vagrantcookbook-ptbr), prevista para lançamento no final de junho. Você pode baixar um [preview gratuito aqui](http://samples.leanpub.com/vagrantcookbook-ptbr-sample.pdf).
 
 ### Considerações Finais
 
