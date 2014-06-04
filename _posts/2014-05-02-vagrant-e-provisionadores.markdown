@@ -28,17 +28,16 @@ Existem 2 "atores" que executam papéis distintos e muito importantes no Vagrant
 
 A imagem abaixo exemplifica como o processo é administrado pelo Vagrant:
 
-
+(image)
 
 ### Terminologia do Vagrant
-- **Vagrantfile** - arquivo qu
-- e contém as definições para criar a máquina virtual 
-- **Box** - Uma Box (caixa) é um pacote que contém o esqueleto da sua máquina. É basicamente uma imagem de sistema operacional, mas pode já conter pacotes instalados / outras configurações 
+- **Vagrantfile** - arquivo que contém as definições para criar a máquina virtual 
+- **Box** - Uma Box (caixa) é um pacote que contém o esqueleto da uma máquina virtual com um sistema operacional e alguns pacotes básicos instalados. 
 - **Máquina Host** - a máquina que irá rodar o Vagrant e levantar o servidor definido através dos arquivos de configuração
 - **Máquina Guest** - o servidor que foi levantado pelo Vagrant, a máquina virtual que irá rodar o seu projeto
-- **Provedor (Provider)** - software de virtualização que irá levantar as máquinas virtuais. O padrão é VirtualBox, por ser gratuito e Open Source, mas existem outras opções como Vmware
+- **Provedor (Provider)** - software responsável por prover um ambiente, normalmente virtualizado (uma VM). O padrão é VirtualBox, por ser gratuito e Open Source, mas existem várias outras opções
 - **Provisionador (Provisioner)** - software de automação que irá preparar a sua máquina, instalando pacotes e executando tarefas. As opções mais comuns são: Shell Script, Puppet, Chef, Ansible.
-
+- **Diretórios Sincronizados** - os diretórios sincronizados permitem que você continue trabalhando na sua máquina Host, com sua IDE favorita, enquanto usa a máquina Guest apenas para rodar o servidor web, por exemplo. Mudanças nos arquivos da aplicação serão refletidas automaticamente dentro da VM.
 
 ### Principais Comandos
 
@@ -71,7 +70,7 @@ Vagrant.configure("2") do |config|
 end
 ~~~~~~~~
 
-Esse é o exemplo mais simples que mostra o processo completo, incluindo um provisionador. Estamos aqui usando a [Vagrant Cloud](https://vagrantcloud.com/) para obtermos nossa box - dessa maneira não precisamos definir também a URL onde o arquivo .box está disponível. Esse é um recurso novo da versão **1.5** do Vagrant. Você pode descobrir outras boxes, com outros sistemas operacionais, na seção "[Discover](https://vagrantcloud.com/discover/featured)" da VagrantCloud. Neste exemplo, usamos a box atualmente mais popular do Vagrant - Ubuntu 12.04 64 bits.
+Esse é o exemplo mais simples que mostra o processo completo, incluindo um provisionador. Estamos aqui usando a [Vagrant Cloud](https://vagrantcloud.com/) para obtermos nossa box - dessa maneira não precisamos definir também a URL onde o arquivo .box está disponível. Esse é um recurso novo da versão **1.5** do Vagrant. Você pode descobrir outras boxes, com outros sistemas operacionais, na seção **[Discover](https://vagrantcloud.com/discover/featured)** da VagrantCloud. Neste exemplo, usamos a box atualmente mais popular do Vagrant - Ubuntu 12.04 64 bits.
 
 Como vocês podem ver, usamos o provisionador Shell, passando um comando inline. Agora, vamos rodar esse ambiente - para isso, acesse a pasta onde o Vagrantfile está localizado, pelo terminal, e execute:
 
@@ -91,6 +90,11 @@ Por padrão, os provisionadores só são executados na primeira vez que você ro
 
 Para executar novamente os provisionadores numa VM que já foi criada, mas está desligada, use `vagrant up --provision`. Se a máquina já está ligada, você pode usar `vagrant provision` para executar os provisionadores diretamente, ou `vagrant reload --provision` para reiniciar a máquina e então executar os provisionadores.
 
+### Usando Ferramentas de Automação
+
+Apesar de parecer a opção mais simples e fácil, Shell script não é a melhor forma de provisionar o seu ambiente de desenvolvimento. Existem ferramentas que foram criadas especificamente para a finalidade de automatizar tarefas em servidores, e elas possuem muitos recursos que você teria de implementar por conta própria caso estivesse preparando seu provisionamento com Shell script - como por exemplo a utilização de templates, comportamento [idempotente](http://pt.wikipedia.org/wiki/Idempot%C3%AAncia), modularização, dentre outros. 
+
+O Vagrant suporta várias ferramentas de automação. As mais populares são: Puppet, Chef e Ansible, nesta ordem. Não existe uma ferramenta melhor que a outra, mas cada uma tem vantagens e características específicas que podem se adequar melhor para o que você pretende fazer; de uma maneira geral, tudo que pode ser feito em uma ferramenta poderá também ser implementado em outra, mas o nível de complexidade pode variar bastante entre elas.
 
 
 
