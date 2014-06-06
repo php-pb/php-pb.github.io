@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Chamada de palestras PHP-PB?
-date: 2014-05-27 11:15:00
+date: 2014-06-06 11:15:00
 author: Abdala Cerqueira
 categories: 
     - evento
