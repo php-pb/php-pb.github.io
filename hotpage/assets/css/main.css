@@ -1,0 +1,98 @@
+/*.declaration-order {
+  Posicionamento
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+
+  Box-model
+  display: block;
+  float: right;
+  width: 100px;
+  height: 100px;
+
+  Tipografia 
+  font: normal 13px "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+
+  Visual
+  background-color: #F5F5F5;
+  border: 1px solid #E5E5E5;
+  border-radius: 3px;
+
+  Outros
+  opacity: 1;
+} */
+
+@charset "UTF-8";
+
+html,
+body {
+  height: 100%;
+}
+
+/********************************************************************
+Estilos base para aplicacao.
+********************************************************************/
+
+/*.left
+--.right
+--.radius
+--.round
+--.text-left
+--.text-right
+--.text-center
+--.text-justify*/
+
+.cursor       { cursor: pointer; } 
+.table        { display: table; } 
+.block        { display:block; }
+.inline-block { display:inline-block; }
+.table-cell   { display: table-cell; }
+.relative     { position: relative; }
+.absolute     { position: absolute; }
+.fixed        { display: fixed; }
+.width-full   { width: 100%; }
+.oblique      { font-style: oblique; }
+.font-light   { font-weight: 300; }
+.font-bold    { font-weight: bold; }
+.uppercase    { text-transform: uppercase; }
+
+.clearfix        { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix        { display: block; } 
+
+.image-replacement{  
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden; 
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.v-middle{ 
+    display: table-cell; 
+    vertical-align: middle;
+}
+ 
+#wrap{
+    position: relative;
+    padding-bottom: 450px;
+    min-height:100%;
+    width: 100%;
+}
+
+/********************************************************************
+Base Titles from application
+********************************************************************/
