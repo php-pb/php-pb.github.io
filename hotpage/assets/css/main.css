@@ -33,12 +33,13 @@
 html,
 body {
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /********************************************************************
 Estilos base para aplicacao.
 ********************************************************************/
-
+/*Casses do foundation*/
 /*.left
 --.right
 --.radius
@@ -48,23 +49,26 @@ Estilos base para aplicacao.
 --.text-center
 --.text-justify*/
 
-.cursor       { cursor: pointer; } 
-.table        { display: table; } 
-.block        { display:block; }
-.inline-block { display:inline-block; }
-.table-cell   { display: table-cell; }
-.relative     { position: relative; }
-.absolute     { position: absolute; }
-.fixed        { display: fixed; }
-.width-full   { width: 100%; }
-.oblique      { font-style: oblique; }
-.font-light   { font-weight: 300; }
-.font-bold    { font-weight: bold; }
-.uppercase    { text-transform: uppercase; }
-
+.cursor          { cursor: pointer; } 
+.table           { display: table; } 
+.block           { display:block; }
+.inline-block    { display:inline-block; }
+.table-cell      { display: table-cell; }
+.relative        { position: relative; }
+.absolute        { position: absolute; }
+.fixed           { position: fixed; }
+.width-full      { width: 100%; }
+.oblique         { font-style: oblique; }
+.font-light      { font-weight: 300; }
+.font-normal     { font-weight: 400; }
+.font-bold       { font-weight: 700; }
+.uppercase       { text-transform: uppercase; }
 .clearfix        { display: inline-block; }
 * html .clearfix { height: 1%; }
 .clearfix        { display: block; } 
+.content         { width: 1}
+.v-middle        { display: table-cell; }
+.color-1         { color: #993300; }
 
 .image-replacement{  
     text-indent: 100%;
@@ -81,14 +85,9 @@ Estilos base para aplicacao.
     height: 0;
 }
 
-.v-middle{ 
-    display: table-cell; 
-    vertical-align: middle;
-}
- 
 #wrap{
     position: relative;
-    padding-bottom: 450px;
+    padding-top:11em;
     min-height:100%;
     width: 100%;
 }
@@ -96,3 +95,48 @@ Estilos base para aplicacao.
 /********************************************************************
 Base Titles from application
 ********************************************************************/
+.main-title{
+  padding:1.2em 0; 
+  font-size: 1.5em;
+  color: #cb4b16
+}
+.title-schedule{
+  font-size: 1em;
+  padding: 1em 0;
+  color: #cc6633;
+}
+  .title-schedule > small{ padding-top:1em; }
+
+/********************************************************************
+Header
+********************************************************************/
+.head{
+    top: 0;
+    z-index: 5;
+    margin: 0;
+    background: #333;
+    border-bottom: 0.1em solid #f9f9f9;
+    -webkit-box-shadow: 0 1px 30px -4px #BFBFBF;
+    box-shadow: 0 1px 30px -4px #BFBFBF;
+}
+  .btn-inscricao{ 
+      margin-top: 2.5em; 
+      font-size: 1em;
+    
+  }
+
+
+/********************************************************************
+Content
+********************************************************************/
+.hours,
+.hours-end{
+  padding-top: 2em;
+  font-size: 2.1em;
+  color: #666;
+}
+
+.hours{ padding-top: 2em; }
+.hours-end{ padding-top: 0.4em;  }
+.container-schedule{ border-bottom: 0.1em solid #ccc; }
+.content-schedule{ padding-left: 2em }
