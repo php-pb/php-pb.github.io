@@ -1,3 +1,18 @@
+---
+layout: post
+title: Bibliotech
+date: 2014-06-17 23:15:00
+author: Abdala Cerqueira
+categories: 
+    - evento
+    - encontro
+tags: 
+    - evento
+    - encontro 
+    - phppb
+    - ifpb
+---
+
 [Bibliotech](https://www.facebook.com/bibliotechpb) e um projeto das comunidades de tecnologia da Paraíba, com o objetivo de troca e venda de livros.
 
 A regra é simples:
