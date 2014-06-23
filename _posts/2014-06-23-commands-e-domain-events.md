@@ -4,12 +4,14 @@ title: Commands e Domain Events
 date: 2014-06-23 10:42:00
 author: Tony Messias
 categories: 
+  - Tutorial
   - DDD
 tags: 
   - DDD
   - PHP
   - Commands
   - Domain Events
+  - Patterns
 
 ---
 
