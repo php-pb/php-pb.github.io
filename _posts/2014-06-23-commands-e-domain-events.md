@@ -1,10 +1,16 @@
 ---
 layout: post
 title: Commands e Domain Events
-date: 2014-06-09 15:15:00
+date: 2014-06-23 10:42:00
 author: Tony Messias
 categories: 
+  - DDD
 tags: 
+  - DDD
+  - PHP
+  - Commands
+  - Domain Events
+
 ---
 
 Lidar com complexidade é tarefa rotineira de um desenvolvedor de software. "Será que esse código tá bom?" ou "Como testar
