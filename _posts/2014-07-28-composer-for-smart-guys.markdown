@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Composer for fucking guys
-date:   2014-07-28 22:50:00
+title:  Composer for smart guys
+date:   2014-07-29 22:50:00
 author: Jefersson Nathan
 categories: 
 - dependências
