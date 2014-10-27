@@ -11,4 +11,4 @@ Acompanhe-nos também em outros canais:
 
 ## Como submeter seu post
 
-Antes de tudo, se você nunca usou o Github, confira [este artigo](http://php-pb.net/2014/04/28/contribuindo-com-artigos/) que ensina como contribuir em repositórios com o Jekyll.
+Antes de tudo, se você nunca usou o Github, confira [este artigo](http://php-pb.net/2014/04/29/contribuindo-com-artigos/) que ensina como contribuir em repositórios com o Jekyll.
