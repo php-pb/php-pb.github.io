@@ -1,0 +1,66 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*==============================
+=            SCREEN            =
+==============================*/
+/*==============================
+=            LAYOUT            =
+==============================*/
+/* HEADER */
+/* ABOUT */
+/* SIDEBAR */
+/* TITLE POST */
+/* CATEGORY POST */
+/* DESCRIPTION POST */
+.container {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+.wrapper {
+  margin-top: 5.08475%;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wrapper:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+.feed {
+  width: 74.57627%;
+}
+.sidebar {
+  width: 23.72881%;
+  float: right;
+  margin-right: 0;
+}
+.posts {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.posts:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+.pagination {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pagination:after {
+  content: " ";
+  display: block;
+  clear: both;
+}

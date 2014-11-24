@@ -1,0 +1,12 @@
+<div class="header horizontal list container">
+  <div class="menu">
+  	<a class="item" href="{{ site.url }}">PHP-PB</a>
+    <div class="right">
+    {% assign url = page.url | remove: 'index.html' %}
+    {% for link in site.navigation %}
+      <a href="{{ link.url }}" class="item {% if url == link.url %}active{% endif %}">{{ link.text }}</a>
+      </a>
+    {% endfor %}
+    </div>
+  </div>
+</div>
