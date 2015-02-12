@@ -16,7 +16,7 @@ tags:
 
 Fala, pessoal! Vamos começar o ano?  
 Em fevereiro vai ter o nosso primeiro encontro de 2015. É claro! Vai ser depois do carnaval!  
-A chamada para palestras está aberta: http://zip.net/blqL8K  
+A chamada para palestras está aberta: [Submissão](http://zip.net/blqL8K)
 A data provável do evento é dia **28/02**. A submissão vai até o dia **20/02.**
 
-![Imagem](https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/t31.0-8/s2048x2048/10549192_809940755736869_1645098002336150598_o.jpg)
+![Imagem](https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/t31.0-8/s2048x2048/10549192_809940755736869_1645098002336150598_o.jpg =500x)
