@@ -34,16 +34,23 @@
 .wrapper:after {
   content: " ";
   display: block;
-  clear: both;
+  /*clear: right;*/
 }
 .feed {
-  width: 74.57627%;
+  width: 100%;
 }
+
 .sidebar {
-  width: 23.72881%;
+  margin-top: 50px;
+  width: 100%;
   float: right;
   margin-right: 0;
 }
+
+.search-tags {
+  display: none;
+}
+
 .posts {
   max-width: 80%;
   margin-left: auto;
@@ -63,4 +70,48 @@
   content: " ";
   display: block;
   clear: both;
+}
+
+@media(max-width: 768px) {
+  .sidebar {
+    box-shadow: none;
+  }
+
+  .search {
+    width: 100% !important;
+  }
+
+  .header .menu .item {
+    font-size: 10px;
+  }
+
+  .sidebar {
+    padding-left: 0;
+  }
+
+  .feed {
+    padding-left: 0;
+  }
+
+  .posts {
+    max-width: 100%;
+  }
+}
+
+@media(min-width: 768px) {
+  .feed {
+    width: 74.57627%;
+    float: left;
+    padding-top: 0;
+  }
+  .sidebar {
+    width: 23.72881%;
+    float: right;
+    margin-right: 0;
+    margin-top: 0;
+  }
+  .search-tags {
+    display: block;
+  }
+
 }

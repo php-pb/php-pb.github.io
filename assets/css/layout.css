@@ -311,7 +311,7 @@ body {
 
 .header .menu {
   width: 100%;
-  padding: 0 3em;
+  padding: 0 2em;
 }
 
 .header .menu .right {
@@ -336,7 +336,6 @@ body {
 
 
 .sidebar {
-  background: transparent;
   padding: 0 0 1em 2em;
   box-shadow: rgba(50, 50, 50, 0.1) -2px 0px 0px 0px;
 }
