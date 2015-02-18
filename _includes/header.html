@@ -5,7 +5,6 @@
     {% assign url = page.url | remove: 'index.html' %}
     {% for link in site.navigation %}
       <a href="{{ link.url }}" class="item {% if url == link.url %}active{% endif %}">{{ link.text }}</a>
-      </a>
     {% endfor %}
     </div>
   </div>
