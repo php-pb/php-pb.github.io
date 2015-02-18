@@ -3,16 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width initial-scale=1">
         <title>{{ page.title }}</title>
         <meta name="description" content="Comunidade de PHP da Paraíba">
         <meta name="title" content="Commands e Domain Events">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!--[if lt IE 9]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <link rel="stylesheet" href="/assets/css/highlight.css">
-        <link rel="stylesheet" href="/assets/css/screen.css">
         <link rel="stylesheet" href="/assets/css/layout.css">
+        <link rel="stylesheet" href="/assets/css/screen.css">
         <link rel="stylesheet" href="/assets/css/icon.css">
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700' rel='stylesheet' type='text/css'>
@@ -23,9 +23,7 @@
         {% include header.html %}
         
         <div class="wrapper container">
-          <div class="feed">
-            {{ content }}
-          </div>
+
 
           <div class="sidebar">
             {% include about.html %}
@@ -36,7 +34,13 @@
                 <i class="icon-search icon"></i>
                 <input type="text" name="search" placeholder="Pesquisar..">
             </div>
-            {% include cloud_tags.html %}
+            <div class="search-tags">
+                {% include cloud_tags.html %}
+            </div>
+          </div>
+
+          <div class="feed">
+            {{ content }}
           </div>
         </div>
 
