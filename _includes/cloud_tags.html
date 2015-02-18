@@ -1,7 +1,7 @@
  <div class="cloud-tags horizontal list">
    
    {% for tag in site.tags %}
-     <a href="/search.html?tags={{ tag | first | slugify }}" class="item">#{{ tag | first | upcase }}
+     <a href="/search.html?tags={{ tag | first | slugify }}" class="item">#{{ tag | first | upcase }}</a>
    {% endfor %}
 
  </div>
