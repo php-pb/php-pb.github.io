@@ -20,4 +20,4 @@ A chamada para palestras está aberta: [Submissão](http://zip.net/blqL8K).
 
 A data provável do evento é dia **28/02**. A submissão vai até o dia **20/02.**
 
-<img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/t31.0-8/s2048x2048/10549192_809940755736869_1645098002336150598_o.jpg" alt="Drawing" width="500"/>
+<img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/t31.0-8/s2048x2048/10549192_809940755736869_1645098002336150598_o.jpg" alt="Drawing" width="100%"/>
