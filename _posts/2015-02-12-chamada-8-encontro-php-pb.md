@@ -2,7 +2,7 @@
 layout: post
 title:  8º Encontro PHP-PB
 date:   2015-02-24 22:06:00
-author: Jefferson Santos
+author: Jammerson Fernando
 categories:
     - evento
     - encontro
@@ -13,6 +13,8 @@ tags:
     - palestras
 ---
 
-#8º Encontro PHP-PB lol
-####[LOCAL DO EVENTO](https://www.google.com.br/maps/place/Instituto+Federal+de+Educa%C3%A7%C3%A3o,+Ci%C3%AAncia+e+Tecnologia+da+Para%C3%ADba/@-7.135631,-34.873338,17z/data=!3m1!4b1!4m2!3m1!1s0x7ace810852ae4f1:0xaf5445223401f2bb)
-![Imagem](https://scontent-mia.xx.fbcdn.net/hphotos-xpf1/t31.0-8/10258105_857126621018282_7975242727704393542_o.jpg)
+![](http://i.imgur.com/QLgLf4s.jpg)
+
+## Local ##
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3958.916702403983!2d-34.873338!3d-7.135631000000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ace810852ae4f1%3A0xaf5445223401f2bb!2sInstituto+Federal+de+Educa%C3%A7%C3%A3o%2C+Ci%C3%AAncia+e+Tecnologia+da+Para%C3%ADba!5e0!3m2!1spt-BR!2sbr!4v1424828788071" width="1000" height="300" frameborder="0" style="border:0"></iframe>
