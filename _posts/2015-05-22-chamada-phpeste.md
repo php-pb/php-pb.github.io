@@ -13,8 +13,9 @@ tags:
     - palestras
     - phpeste
 ---
-###Conferência de PHP do Nordeste. **Dias 3 e 4 de outubro em João Pessoa.** Esperamos todos!
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sVJPXvSKnIM" frameborder="0" allowfullscreen></iframe>
+### Conferência de PHP do Nordeste. **Dias 3 e 4 de outubro em João Pessoa.** Esperamos todos!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sVJPXvSKnIM" frameborder="0" allowfullscreen="1" ></iframe>
 
 ## Local ##
 
