@@ -23,4 +23,4 @@ navigation:
 future: true
 show_drafts: true
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
