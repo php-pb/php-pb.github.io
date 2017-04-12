@@ -8,13 +8,13 @@ description: Comunidade PHP na Paraíba
 permalink: /:year/:month/:day/:title/
 paginate: 10
 paginate_path: 'page:num'
-    
+
 # MENU DE NAVEGAÇÃO
 navigation:
 - text: início
   url: '/'
-- text: encontro
-  url: '/encontro'
+#- text: encontro
+#  url: '/encontro'
 #- text: vagas de emprego
 #  url: '/vagas'
 #- text: hangouts
