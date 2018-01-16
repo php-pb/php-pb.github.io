@@ -13,12 +13,10 @@ paginate_path: 'page:num'
 navigation:
 - text: início
   url: '/'
-#- text: encontro
-#  url: '/encontro'
-#- text: vagas de emprego
-#  url: '/vagas'
-#- text: hangouts
-#  url: '/hangouts'
+- text: Sobre
+  url: '/about'
+- text: Vagas em aberto
+  url: '/jobs'
 
 future: true
 show_drafts: true
