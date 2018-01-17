@@ -1,54 +1,58 @@
 ---
 layout: default
-title: PHP-PB
+title: PHP-PB 
 ---
 
 <div class="posts list">
-	{% for post in paginator.posts %}
-	  <div class="post item">	
-	  	<div class="info">
-              <!-- <a href="/search.html?category={{post.categories | first | slugify | url_encode | escape }}" class="category">#{{ post.categories | first }}</a> -->
-	  		<a href="{{ post.url }}" class="title">{{ post.title }}</a>
-	  	</div>
-	  	<div class="description preview">
-  			{{ post.excerpt | strip_html }}
-	  	</div>
-	  	<div class="meta">
-	  		<div class="row">
-	  			<div class="author"><i class="icon-user"></i> {{ post.author }}</div>
-				<div class="date right"><i class="icon-calendar"></i> {{ post.date | date: "%-d/%m/%y" }}</div>
-	  		</div>
-	  	</div>
-	  </div>
-	{% endfor %}
+  {% for post in paginator.posts %}
+  <div class="post item">
+    <div class="info">
+      <!-- <a href="/search.html?category={{post.categories | first | slugify | url_encode | escape }}" class="category">#{{ post.categories | first }}</a> -->
+      <a href="{{ post.url }}" class="title">{{ post.title }}</a>
+    </div>
+    <div class="description preview">
+      {{ post.excerpt | strip_html }}
+    </div>
+    <div class="meta">
+      <div class="row">
+        <div class="author">
+          <i class="icon-user"></i> {{ post.author }}</div>
+        <div class="date right">
+          <i class="icon-calendar"></i> {{ post.date | date: "%-d/%m/%y" }}</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 
 {% if paginator.total_pages > 1 %}
 <div class="pagination horizontal list">
-	<center>
-		<div class="menu">
-			{% if paginator.previous_page %}
-			<a href="{{ paginator.previous_page_path }}" class="item"><i class="icon-left-open"></i></a>
-			{% else %}
-			<a class="item"><i class="icon-left-open"></i></a>
-			{% endif %}
-
-			{% for page in (1..paginator.total_pages) %}
-				{% if page == paginator.page %}
-				<a class="item active">{{page}}</a>
-				{% elsif page == 1 %}
-				<a href="{{ '/index.html' }}" class="item">{{ page }}</a>
-				{% else %}
-				<a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="item">{{ page }}</a>
-				{% endif %}
-			{% endfor %}
-
-			{% if paginator.next_page %}
-			<a href="{{ paginator.next_page_path }}" class="item"><i class="icon-right-open"></i></a>
-			{% else %}
-			<a class="item"><i class="icon-right-open"></i></a>
-			{% endif %}
-		</div>
-	</center>
+  <center>
+    <div class="menu">
+      {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="item">
+        <i class="icon-left-open"></i>
+      </a>
+      {% else %}
+      <a class="item">
+        <i class="icon-left-open"></i>
+      </a>
+      {% endif %} {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
+      <a class="item active">{{page}}</a>
+      {% elsif page == 1 %}
+      <a href="{{ '/index.html' }}" class="item">{{ page }}</a>
+      {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="item">{{ page }}</a>
+      {% endif %} {% endfor %} {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="item">
+        <i class="icon-right-open"></i>
+      </a>
+      {% else %}
+      <a class="item">
+        <i class="icon-right-open"></i>
+      </a>
+      {% endif %}
+    </div>
+  </center>
 </div>
 {% endif %}

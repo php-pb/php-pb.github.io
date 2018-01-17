@@ -17,7 +17,8 @@ Promover a interatividade entre pessoas interessadas na linguagem de programa√ß√
 
 ## Parceiros
 
-<a target="_blank" href="https://www.facebook.com/groups/paraibajs/384146891723494/"><img class="no-fancybox" src="http://php-pb.net/images/paraibajs_logo.png" alt="Mobile Dev"></a> &nbsp;
-<a target="_blank" href="https://www.facebook.com/groups/blackberrydevjampa/"><img class="no-fancybox" src="http://php-pb.net/images/mobile-dev.png" alt="Mobile Dev"></a>
-<br><br>
-<a target="_blank" href="http://gdgjp.org.br"><img class="no-fancybox" src="http://php-pb.net/images/gdg.png" alt="Mobile Dev"></a>
+[![Paraiba JS](/images/paraibajs_logo.png)](https://www.facebook.com/groups/paraibajs/384146891723494/)
+[![Mobile Dev](/images/mobile-dev.png)](https://www.facebook.com/groups/blackberrydevjampa/)
+[![PUG PB](/images/pug_logo2.png)](http://pb.python.org.br)
+<br /><br />
+[![GDG JP](/images/gdg.png)](http://gdgjp.org.br)
