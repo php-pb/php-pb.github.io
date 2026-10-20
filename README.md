@@ -1,6 +1,6 @@
 # PHP-PB - Comunidade PHP da Paraíba
 
-![PHP-PB Hero](assets/hero.png)
+![PHP-PB Hero](assets/site.png)
 
 <p align="center">
   <a href="https://php-pb.net"><img src="https://img.shields.io/badge/site-php--pb.net-blue?style=flat-square" alt="Site"></a>
