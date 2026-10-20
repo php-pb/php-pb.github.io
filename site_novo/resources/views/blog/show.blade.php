@@ -1,23 +1,23 @@
 <x-layouts.app :title="$post->title . ' - PHP-PB'">
     <livewire:landing.header />
 
-    <main class="pt-20">
+    <main class="bg-areia">
         <!-- Hero do post -->
-        <div class="relative min-h-[50vh] flex items-end gradient-hero overflow-hidden">
+        <div class="relative min-h-[40vh] flex items-end gradient-hero overflow-hidden">
             @if ($post->getMainImage())
                 <div class="absolute inset-0">
                     <img src="{{ $post->getMainImage() }}"
-                         class="w-full h-full object-cover object-center opacity-30"
+                         class="w-full h-full object-cover object-center opacity-25"
                          alt="{{ $post->title }}">
                 </div>
             @endif
-            <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+            <div class="relative max-w-4xl mx-auto px-6 py-16 w-full">
                 @if ($post->category)
                     <span class="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-4">
                         {{ $post->category->name }}
                     </span>
                 @endif
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
                     {{ $post->title }}
                 </h1>
                 <div class="mt-4 flex items-center gap-4 text-white/70 text-sm">
@@ -42,37 +42,37 @@
         </div>
 
         <!-- Conteúdo do post -->
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            @if ($post->content_blocks)
-                <x-render-blocks :blocks="$post->content_blocks" />
-            @endif
+        <div class="max-w-4xl mx-auto px-6 py-12">
+            <div class="bg-white rounded-2xl shadow-[0_4px_16px_rgba(8,45,82,.07)] p-6 sm:p-10">
+                @if ($post->content_blocks)
+                    <x-render-blocks :blocks="$post->content_blocks" />
+                @endif
 
-            <!-- Rodapé do post -->
-            <div class="mt-16 pt-8 border-t border-ink-700">
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    @if ($post->author)
-                        <div class="flex items-center gap-4">
-                            @if ($post->author->getAvatar())
-                                <img src="{{ $post->author->getAvatar() }}"
-                                     class="w-14 h-14 rounded-full object-cover shrink-0"
-                                     alt="{{ $post->author->name }}">
-                            @endif
-                            <div>
-                                <p class="font-semibold text-ink-100">{{ $post->author->name }}</p>
-                                @if ($post->author->bio)
-                                    <p class="text-sm text-ink-400">{{ $post->author->bio }}</p>
+                <!-- Rodapé do post -->
+                <div class="mt-16 pt-8 border-t border-cinza-claro">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        @if ($post->author)
+                            <div class="flex items-center gap-4">
+                                @if ($post->author->getAvatar())
+                                    <img src="{{ $post->author->getAvatar() }}"
+                                         class="w-14 h-14 rounded-full object-cover shrink-0"
+                                         alt="{{ $post->author->name }}">
                                 @endif
+                                <div>
+                                    <p class="font-semibold text-preto">{{ $post->author->name }}</p>
+                                    @if ($post->author->bio)
+                                        <p class="text-sm text-cinza">{{ $post->author->bio }}</p>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
 
-                    <a href="{{ route('blog.index') }}"
-                       class="inline-flex items-center gap-2 text-accent font-medium hover:underline">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                        </svg>
-                        Voltar ao blog
-                    </a>
+                        <a href="{{ route('blog.index') }}"
+                           class="inline-flex items-center gap-2 text-azul-principal font-semibold hover:underline">
+                            <x-phosphor-arrow-left class="w-4 h-4" />
+                            Voltar ao blog
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
