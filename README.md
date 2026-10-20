@@ -130,6 +130,8 @@ docker-compose exec app php artisan <comando>
 docker-compose exec app npm run <comando>
 ```
 
+Acesse: http://localhost:8080
+
 ## Desenvolvimento
 
 ```bash
