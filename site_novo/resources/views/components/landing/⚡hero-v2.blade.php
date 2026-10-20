@@ -7,57 +7,66 @@ new class extends Component {
 };
 ?>
 
-<section class="relative min-h-screen flex items-center bg-ink-950 bg-noise overflow-hidden">
-    <!-- Glow radial atrás da logo -->
-    <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[640px] h-[640px] bg-accent-500/20 rounded-full blur-3xl pointer-events-none"></div>
+<section id="hero" class="relative pt-9 lg:pt-14 overflow-hidden bg-areia">
+    <div class="relative z-[2] max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-6 items-center">
+        <!-- Texto -->
+        <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-azul-principal mb-3.5">
+                Comunidade PHP da Paraíba
+            </p>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <!-- Status label -->
-                <div class="inline-flex items-center mb-8">
-                    <span class="w-2 h-2 bg-accent-400 rounded-full mr-3"></span>
-                    <span class="text-ink-400 font-medium text-sm tracking-wide">500+ membros ativos</span>
-                </div>
+            <h1 class="font-display font-extrabold text-[clamp(46px,13vw,64px)] lg:text-[clamp(52px,6.6vw,88px)] leading-[0.98] tracking-[-0.03em] text-preto">
+                Gente,<br>código e<br><span class="text-azul-principal">Nordeste.</span>
+            </h1>
 
-                <!-- Main heading -->
-                <h1 class="font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-ink-100 text-balance scroll-reveal">
-                    A comunidade PHP que conecta a <span class="text-accent">Paraíba</span>
-                </h1>
+            <p class="mt-7 max-w-[470px] text-[14.5px] text-[#334155]">
+                A PHP PB é a comunidade de desenvolvedores PHP da Paraíba. Conectamos pessoas, compartilhamos
+                conhecimento e fortalecemos o ecossistema PHP no nosso estado.
+            </p>
 
-                <p class="text-lg lg:text-xl text-ink-400 max-w-xl mb-12 leading-relaxed scroll-reveal">
-                    Onde desenvolvedores se conectam, aprendem e evoluem juntos desde <span class="text-ink-100 font-medium">2012</span>.
-                </p>
-
-                <!-- CTAs -->
-                <div class="flex flex-col sm:flex-row gap-4 scroll-reveal">
-                    <a href="https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t" target="_blank" rel="noopener"
-                       class="group px-8 py-4 bg-accent-600 hover:bg-accent-700 active:scale-[0.98] rounded-xl font-semibold text-lg text-white transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-300">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Entrar na Comunidade
-                        <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
-                    <a href="#sobre"
-                       class="px-8 py-4 border border-ink-600 rounded-xl font-semibold text-lg text-ink-100 hover:bg-ink-800 hover:border-ink-400 transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400">
-                        Explorar Conteúdo
-                    </a>
-                </div>
+            <div class="mt-7.5 flex flex-wrap gap-3.5">
+                <a href="https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t" target="_blank" rel="noopener"
+                   class="w-full sm:w-auto justify-center inline-flex items-center gap-2.5 px-5.5 py-3.5 rounded-full bg-azul-marinho hover:bg-[#0b3b6c] text-white font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(30,142,219,.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-azul-claro">
+                    Conheça a comunidade
+                    <x-phosphor-arrow-right class="w-4 h-4" />
+                </a>
+                <a href="{{ route('events.index') }}"
+                   class="w-full sm:w-auto justify-center inline-flex items-center gap-2.5 px-5.5 py-3.5 rounded-full border-[1.5px] border-azul-principal text-azul-principal font-semibold text-sm transition-all hover:bg-azul-fundo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-azul-principal">
+                    <x-phosphor-calendar-blank class="w-4 h-4" />
+                    Próximos eventos
+                </a>
             </div>
+        </div>
 
-            <!-- Logo em destaque -->
-            <div class="hidden lg:flex justify-center items-center">
-                <img src="{{ asset('images/logo_phppb.png') }}" alt="Mascote PHP-PB"
-                     class="w-full max-w-md object-contain animate-float scroll-reveal">
-            </div>
+        <!-- Ilustração -->
+        <div class="relative w-full max-w-[560px] mx-auto mt-2 lg:max-w-none lg:mx-0 lg:mt-0 aspect-[1/0.98]" aria-hidden="true">
+            <span class="absolute right-0 lg:right-[2%] top-[-2%] lg:top-[-4%] z-[4] font-script text-azul-principal text-base lg:text-[clamp(17px,2vw,26px)] leading-[1.1] -rotate-[8deg] text-left">
+                Mais comunidade,<br>novos<br>horizontes.
+            </span>
+
+            <img src="{{ asset('images/hero/nuvem.png') }}" alt="" class="absolute z-0 w-[16%] left-0 top-[24%] opacity-50">
+            <img src="{{ asset('images/hero/nuvem.png') }}" alt="" class="absolute z-0 w-[22%] right-[2%] top-[4%] opacity-50">
+            <img src="{{ asset('images/hero/nuvem.png') }}" alt="" class="absolute z-0 w-[18%] right-0 top-[46%] opacity-40">
+
+            <img src="{{ asset('images/hero/sol.png') }}" alt="" class="absolute z-0 w-[50%] left-[30%] top-[2%]">
+
+            <svg viewBox="0 0 200 80" fill="#082D52" class="absolute z-0 w-[24%] left-[2%] top-[8%]">
+                <path d="M10 38 q14 -20 28 -4 q14 -18 30 2 q-16 -6 -29 8 q-14 -12 -29 -6z"/>
+                <path d="M96 66 q10 -14 20 -3 q10 -12 22 2 q-12 -4 -21 6 q-9 -8 -21 -5z"/>
+            </svg>
+
+            <img src="{{ asset('images/hero/farol.png') }}" alt="Farol" class="absolute z-0 w-[96%] left-[4%] top-[6%]">
+
+            <img src="{{ asset('images/hero/palmeira.png') }}" alt="" class="absolute z-0 w-[26%] right-0 top-[54%]">
+            <img src="{{ asset('images/hero/palmeira.png') }}" alt="" class="absolute z-0 w-[17%] left-[60%] top-[66%]">
+
+            <img src="{{ asset('images/hero/mascote.png') }}" alt="Mascote da PHP PB" class="absolute z-[3] w-[46%] left-0 top-[56%] drop-shadow-[0_12px_14px_rgba(8,45,82,.18)]">
         </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg class="w-6 h-6 text-ink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-    </div>
+    <!-- Onda -->
+    <svg class="absolute left-0 bottom-[-1px] z-[1] w-full h-[14%] min-h-[70px] pointer-events-none" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 70 C180 10 300 110 520 70 C740 30 880 110 1100 70 C1260 40 1360 60 1440 80 L1440 120 L0 120Z" fill="#1E8EDB" opacity=".9"/>
+        <path d="M0 90 C200 40 340 120 560 90 C780 60 920 120 1140 90 C1280 70 1380 85 1440 100 L1440 120 L0 120Z" fill="#8DD0F3"/>
+    </svg>
 </section>
