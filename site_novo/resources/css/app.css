@@ -7,76 +7,66 @@
 
 @theme {
     /* Tipografia */
-    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-display: 'Poppins', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-script: 'Satisfy', cursive;
 
-    /* Neutros escuros com matiz de azul-marinho (tom do logo PHP-PB) */
-    --color-ink-950: #0a1620;
-    --color-ink-900: #0f2030;
-    --color-ink-800: #16304a;
-    --color-ink-700: #1f3f5e;
-    --color-ink-600: #2c5277;
-    --color-ink-400: #7a93ab;
-    --color-ink-100: #eef3f8;
+    /* Paleta oficial do design system PHP PB (ver design/design.png) */
+    --color-azul-marinho: #082d52;
+    --color-azul-principal: #1e8edb;
+    --color-azul-claro: #8dd0f3;
+    --color-azul-fundo: #ebf4fc;
 
-    /* Acento único - azul do elefante do logo */
-    --color-accent-300: #a9d2ec;
-    --color-accent-400: #7cb7e0;
-    --color-accent-500: #5b9bd3;
-    --color-accent-600: #4580b3;
-    --color-accent-700: #356693;
+    --color-preto: #0f172a;
+    --color-cinza: #64748b;
+    --color-cinza-claro: #cbd5e1;
+    --color-areia: #f9f6ee;
+
+    --color-amarelo-nordeste: #f5b82e;
+    --color-verde-cactos: #10b981;
+    --color-vermelho-terra: #d45a3b;
 }
 
-/* Tema claro - sobrescreve os tokens de fundo/borda/texto neutro e o
-   role de texto em acento (que precisa de um degrade mais escuro da
-   escala accent pra continuar legível sobre fundo claro). */
-:root {
-    --color-accent-text: var(--color-accent-400);
+html {
+    scroll-padding-top: 84px;
 }
 
-[data-theme='light'] {
-    --color-ink-950: #f5f7fa;
-    --color-ink-900: #eef2f7;
-    --color-ink-800: #ffffff;
-    --color-ink-700: #d7e0ea;
-    --color-ink-600: #b8c7d9;
-    --color-ink-400: #5c6b7d;
-    --color-ink-100: #16304a;
-    --color-accent-text: var(--color-accent-700);
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-areia);
+    color: var(--color-preto);
 }
 
-/* Faixa de título das páginas internas (blog/vagas/palestrantes/eventos) -
-   usa só a escala accent (fixa, não inverte com o tema) pra continuar um
-   degradê vívido com texto branco legível nos dois temas. */
+/* Empurra o footer pro final da viewport em páginas com pouco conteúdo
+   (ex: listagens vazias de eventos/blog). */
+body > main {
+    flex: 1 0 auto;
+}
+
+/* Faixa de título das páginas internas e seções de destaque -
+   degradê fixo na escala azul, com texto branco legível. */
 .gradient-hero {
-    background: linear-gradient(135deg, var(--color-accent-700) 0%, var(--color-accent-500) 100%);
-}
-
-@utility text-accent {
-    color: var(--color-accent-text);
+    background: linear-gradient(135deg, var(--color-azul-marinho) 0%, var(--color-azul-principal) 100%);
 }
 
 .gradient-cta {
-    background: linear-gradient(135deg, var(--color-accent-700) 0%, var(--color-accent-500) 100%);
+    background: linear-gradient(135deg, var(--color-azul-marinho) 0%, var(--color-azul-principal) 100%);
 }
 
 .gradient-cta:hover {
-    background: linear-gradient(135deg, var(--color-accent-600) 0%, var(--color-accent-400) 100%);
+    background: linear-gradient(135deg, var(--color-azul-principal) 0%, var(--color-azul-claro) 100%);
 }
 
-/* Textura sutil pra quebrar a chapadura das seções escuras */
-.bg-noise {
-    position: relative;
+/* Esconde a scrollbar em carrosséis com overflow-x (ex: eventos) */
+.no-scrollbar {
+    scrollbar-width: none;
 }
 
-.bg-noise::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
 }
 
 /* Animações */
@@ -93,9 +83,104 @@
     animation: float 3s ease-in-out infinite;
 }
 
-/* Tipografia display */
+/* Tipografia display / script */
 .font-display {
     font-family: var(--font-display);
+}
+
+.font-script {
+    font-family: var(--font-script);
+}
+
+/* Corpo de texto rico do blog (RichEditor do Filament) - sem plugin de
+   tipografia, estilado manualmente com os tokens do design system. */
+.post-content {
+    color: var(--color-preto);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+}
+
+.post-content > * + * {
+    margin-top: 1.25em;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-azul-marinho);
+    line-height: 1.25;
+    margin-top: 1.75em;
+}
+
+.post-content h2 {
+    font-size: 1.5em;
+}
+
+.post-content h3 {
+    font-size: 1.25em;
+}
+
+.post-content a {
+    color: var(--color-azul-principal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.post-content strong {
+    font-weight: 700;
+    color: var(--color-azul-marinho);
+}
+
+.post-content ul,
+.post-content ol {
+    padding-left: 1.5em;
+}
+
+.post-content ul {
+    list-style: disc;
+}
+
+.post-content ol {
+    list-style: decimal;
+}
+
+.post-content blockquote {
+    border-left: 3px solid var(--color-azul-principal);
+    background: var(--color-azul-fundo);
+    padding: 0.75em 1.25em;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: var(--color-azul-marinho);
+}
+
+.post-content code {
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    background: var(--color-azul-fundo);
+    color: var(--color-azul-marinho);
+    padding: 0.15em 0.4em;
+    border-radius: 0.3em;
+    font-size: 0.875em;
+}
+
+.post-content pre {
+    background: var(--color-preto);
+    color: var(--color-azul-claro);
+    padding: 1.25em;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+}
+
+.post-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+.post-content img {
+    border-radius: 0.75rem;
 }
 
 /* Scroll reveal - preparação */
