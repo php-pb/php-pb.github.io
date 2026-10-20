@@ -32,9 +32,9 @@ class MemberPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/membro/theme.css')
             ->login(Login::class)
             ->colors([
-                'primary' => Color::generatePalette('#5b9bd3'),
+                'primary' => Color::generatePalette('#1e8edb'),
             ])
-            ->font('Outfit')
+            ->font('Poppins')
             ->userMenu(position: UserMenuPosition::Sidebar)
             ->discoverResources(in: app_path('Filament/Member/Resources'), for: 'App\Filament\Member\Resources')
             ->discoverPages(in: app_path('Filament/Member/Pages'), for: 'App\Filament\Member\Pages')

@@ -32,9 +32,9 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login(Login::class)
             ->colors([
-                'primary' => Color::generatePalette('#5b9bd3'),
+                'primary' => Color::generatePalette('#1e8edb'),
             ])
-            ->font('Outfit')
+            ->font('Poppins')
             ->userMenu(position: UserMenuPosition::Sidebar)
             ->plugins([
                 FilamentPeekPlugin::make(),
