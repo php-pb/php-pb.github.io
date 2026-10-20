@@ -52,6 +52,13 @@ COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Copy PHP configuration
 COPY docker/php/local.ini /usr/local/etc/php/conf.d/local.ini
 
+# Entrypoint - corrige dono/permissao de storage e bootstrap/cache a cada
+# start (necessario porque os volumes nomeados do docker-compose sao
+# montados por cima dessas pastas depois do build, com dono root)
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
 # Prepare Laravel writable paths
 RUN mkdir -p \
     /var/www/storage \

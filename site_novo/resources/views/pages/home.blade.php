@@ -3,13 +3,16 @@
 
     <main>
         <livewire:landing.hero-v2 />
-        <livewire:landing.activity-feed />
+        <livewire:landing.stats />
         <livewire:landing.about />
-        <livewire:landing.featured-members />
-        <livewire:landing.features />
+        <livewire:landing.pillars />
         <livewire:landing.events-timeline />
-        <livewire:landing.blog-preview />
         <livewire:landing.community />
+        <livewire:landing.blog-preview />
+        <livewire:landing.join />
+        {{-- Patrocinadores ocultos até termos patrocinadores reais confirmados --}}
+        {{-- <livewire:landing.sponsors /> --}}
+        <livewire:landing.partners />
         <livewire:landing.cta-final />
     </main>
 

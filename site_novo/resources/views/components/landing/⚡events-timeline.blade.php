@@ -8,121 +8,69 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->events = Event::published()->upcoming()->orderBy('starts_at')->take(3)->get();
+        $this->events = Event::published()->orderBy('starts_at', 'desc')->take(8)->get();
     }
 };
 ?>
 
-<section id="eventos" class="py-20 lg:py-32 bg-ink-900 bg-noise">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="max-w-2xl mb-16">
-            <div class="inline-flex items-center text-accent text-sm font-semibold tracking-wide mb-4">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-                Próximos encontros
+<section id="eventos" class="relative mt-[60px] pt-[72px] pb-[70px] bg-azul-marinho text-white rounded-t-[60px]">
+    <div class="max-w-[1200px] mx-auto px-6">
+        <div class="flex justify-between items-end gap-5 flex-wrap mb-7">
+            <div>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-azul-claro mb-3.5">Eventos</p>
+                <h2 class="font-display text-[clamp(24px,2.6vw,32px)] font-bold text-white">
+                    Encontros que<br>fortalecem a comunidade.
+                </h2>
             </div>
-            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink-100 mb-6 text-balance">
-                Eventos da <span class="text-accent">comunidade</span>
-            </h2>
-            <p class="text-lg text-ink-400">
-                Participe dos nossos meetups, workshops e conferências
-            </p>
+            <a href="{{ route('events.index') }}"
+               class="w-full sm:w-auto justify-center inline-flex items-center gap-2.5 px-[18px] py-[11px] rounded-full bg-azul-principal hover:bg-[#1779bb] text-white font-semibold text-[13px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(30,142,219,.25)]">
+                Ver todos os eventos
+                <x-phosphor-arrow-right class="w-4 h-4" />
+            </a>
         </div>
 
         @if (count($events) > 0)
-            <!-- Events Timeline -->
-            <div class="space-y-6">
-                @foreach ($events as $event)
-                    <div class="group relative bg-ink-800 rounded-2xl hover:bg-ink-700 transition-all overflow-hidden
-                        {{ $event->is_featured ? 'ring-1 ring-accent-400/40' : '' }}">
+            <div x-data="{
+                step() {
+                    const card = this.$refs.track.querySelector(':scope > *');
+                    return card ? card.getBoundingClientRect().width + 16 : 300;
+                },
+                prev() { this.$refs.track.scrollBy({ left: -this.step(), behavior: 'smooth' }); },
+                next() { this.$refs.track.scrollBy({ left: this.step(), behavior: 'smooth' }); },
+            }" class="relative">
+                <button @click="prev" type="button" aria-label="Eventos anteriores"
+                        class="hidden sm:grid place-items-center absolute top-[40%] -left-[18px] z-[5] w-[38px] h-[38px] rounded-full bg-white text-azul-marinho shadow-[0_6px_16px_rgba(0,0,0,.25)] hover:scale-[1.08] transition-transform">
+                    <x-phosphor-caret-left class="w-4 h-4" />
+                </button>
 
-                        <!-- Highlight badge -->
-                        @if ($event->is_featured)
-                            <div class="absolute top-0 right-0 bg-accent-600 text-white text-xs font-bold px-4 py-1 rounded-bl-xl">
-                                DESTAQUE
+                <div x-ref="track" class="no-scrollbar grid grid-flow-col [grid-auto-columns:82%] sm:[grid-auto-columns:calc((100%-16px)/2)] lg:[grid-auto-columns:calc((100%-48px)/4)] gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1">
+                    @foreach ($events as $i => $event)
+                        <article class="snap-start rounded-[10px] overflow-hidden bg-[#0c3a68] border border-white/[0.08] transition-transform hover:-translate-y-1">
+                            <div @class([
+                                'aspect-[16/10] bg-cover bg-center',
+                                'bg-[radial-gradient(circle_at_30%_40%,#3a6a9c,#0a2a4a_70%)]' => $i % 4 === 0,
+                                'bg-[radial-gradient(circle_at_70%_30%,#4b7aa6,#0a2a4a_70%)]' => $i % 4 === 1,
+                                'bg-[radial-gradient(circle_at_50%_60%,#2f5f94,#07223f_70%)]' => $i % 4 === 2,
+                                'bg-[radial-gradient(circle_at_20%_70%,#3f6e9e,#08254a_70%)]' => $i % 4 === 3,
+                            ]) @style([
+                                "background-image: url('{$event->getBanner()}')" => $event->getBanner(),
+                            ])></div>
+                            <div class="p-[10px_12px_12px] grid gap-px">
+                                <h4 class="text-white text-[12.5px] font-semibold">{{ $event->title }}</h4>
+                                <span class="text-[11px] text-[#b6c9de]">{{ $event->location }}</span>
+                                <time class="text-[11px] text-azul-claro">{{ mb_convert_case($event->starts_at->translatedFormat('M Y'), MB_CASE_TITLE, 'UTF-8') }}</time>
                             </div>
-                        @endif
+                        </article>
+                    @endforeach
+                </div>
 
-                        <div class="grid lg:grid-cols-12 gap-6 p-6 lg:p-8">
-                            <!-- Date Card -->
-                            <div class="lg:col-span-2">
-                                <div class="inline-flex lg:block bg-ink-900 rounded-xl p-4 text-center">
-                                    <div>
-                                        <div class="font-display text-4xl lg:text-5xl font-semibold text-ink-100">{{ $event->starts_at->format('d') }}</div>
-                                        <div class="text-accent font-semibold text-sm mt-1">{{ mb_strtoupper($event->starts_at->translatedFormat('M')) }}</div>
-                                        <div class="text-ink-400 text-xs">{{ $event->starts_at->format('Y') }}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Event Info -->
-                            <div class="lg:col-span-7">
-                                <h3 class="font-display text-2xl font-semibold text-ink-100 mb-3">{{ $event->title }}</h3>
-                                @if ($event->description)
-                                    <p class="text-ink-400 mb-4">{{ $event->description }}</p>
-                                @endif
-
-                                <div class="flex flex-wrap gap-4 text-sm">
-                                    <!-- Time -->
-                                    <div class="flex items-center text-ink-400">
-                                        <svg class="w-5 h-5 mr-2 text-ink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                        {{ $event->starts_at->format('H:i') }}
-                                    </div>
-
-                                    <!-- Location -->
-                                    <div class="flex items-center text-ink-400">
-                                        <svg class="w-5 h-5 mr-2 text-ink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        </svg>
-                                        {{ $event->location }}
-                                    </div>
-
-                                    <!-- Type badge -->
-                                    <span class="px-3 py-1 bg-accent-500/15 text-accent rounded-full text-xs font-medium">
-                                        {{ $event->type->getLabel() }}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- Actions & Stats -->
-                            <div class="lg:col-span-3 flex lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-4">
-                                <!-- Attendees -->
-                                @if ($event->attendees_count)
-                                    <div class="text-center">
-                                        <div class="font-display text-3xl font-semibold text-ink-100">{{ $event->attendees_count }}</div>
-                                        <div class="text-ink-400 text-xs">confirmados</div>
-                                    </div>
-                                @endif
-
-                                <!-- CTA -->
-                                @if ($event->external_url)
-                                    <a href="{{ $event->external_url }}" target="_blank" rel="noopener"
-                                       class="px-6 py-3 bg-accent-600 hover:bg-accent-700 active:scale-[0.98] text-white font-semibold rounded-lg transition-all text-center whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-300">
-                                        Confirmar Presença
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                <button @click="next" type="button" aria-label="Próximos eventos"
+                        class="hidden sm:grid place-items-center absolute top-[40%] -right-[18px] z-[5] w-[38px] h-[38px] rounded-full bg-white text-azul-marinho shadow-[0_6px_16px_rgba(0,0,0,.25)] hover:scale-[1.08] transition-transform">
+                    <x-phosphor-caret-right class="w-4 h-4" />
+                </button>
             </div>
         @else
-            <p class="text-center text-ink-400">Nenhum evento agendado no momento. Volte em breve!</p>
+            <p class="text-center text-white/70">Nenhum evento publicado no momento. Volte em breve!</p>
         @endif
-
-        <!-- View all CTA -->
-        <div class="text-center mt-12">
-            <a href="{{ route('events.index') }}" class="inline-flex items-center px-6 py-3 bg-ink-800 hover:bg-ink-700 text-ink-100 font-medium rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400">
-                Ver todos os eventos
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
-            </a>
-        </div>
     </div>
 </section>

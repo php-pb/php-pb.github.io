@@ -1,6 +1,6 @@
 # PHP-PB - Comunidade PHP da Paraíba
 
-![PHP-PB Hero](assets/hero.png)
+![PHP-PB Hero](assets/site.png)
 
 <p align="center">
   <a href="https://php-pb.net"><img src="https://img.shields.io/badge/site-php--pb.net-blue?style=flat-square" alt="Site"></a>
@@ -129,6 +129,8 @@ docker-compose exec app php artisan <comando>
 # Rodar NPM
 docker-compose exec app npm run <comando>
 ```
+
+Acesse: http://localhost:8080
 
 ## Desenvolvimento
 

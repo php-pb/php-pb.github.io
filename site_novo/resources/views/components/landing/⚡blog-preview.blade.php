@@ -8,121 +8,83 @@ new class extends Component {
 
     public function mount(): void
     {
-        // Buscar os 3 posts mais recentes publicados
         $this->recentPosts = Post::published()
             ->with(['category', 'author'])
             ->orderBy('published_at', 'desc')
             ->take(3)
             ->get();
     }
-
-    public function getReadTime($content): string
-    {
-        if (!$content) return '5 min';
-
-        $wordCount = str_word_count(strip_tags(json_encode($content)));
-        $minutes = max(1, ceil($wordCount / 200));
-
-        return $minutes . ' min';
-    }
 };
 ?>
 
-<section id="blog" class="py-20 lg:py-32 bg-ink-950 bg-noise">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="max-w-2xl mb-16">
-            <div class="inline-flex items-center text-accent text-sm font-semibold tracking-wide mb-4">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                </svg>
-                Conteúdo da comunidade
+<section id="conteudos" class="pt-20 pb-10 bg-areia">
+    <div class="max-w-[1200px] mx-auto px-6">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5 lg:gap-20 mb-7.5">
+            <div>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-azul-principal mb-3.5">Conteúdos</p>
+                <h2 class="font-display text-[clamp(28px,3.2vw,38px)] font-bold text-preto">
+                    Conhecimento<br>sem fronteiras.
+                </h2>
+                <p class="mt-3 max-w-[460px] text-[13.5px] text-cinza">
+                    Artigos, vídeos, guias e materiais produzidos pela comunidade para a comunidade.
+                </p>
             </div>
-            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink-100 mb-6 text-balance">
-                Últimos <span class="text-accent">artigos</span>
-            </h2>
-            <p class="text-lg text-ink-400">
-                Aprenda com a experiência dos membros da comunidade
-            </p>
+
+            <div class="relative hidden lg:block w-[300px] h-[170px] shrink-0" aria-hidden="true">
+                <img src="{{ asset('images/hero/sol.png') }}" alt="" class="absolute w-20 right-[90px] top-0">
+                <img src="{{ asset('images/hero/nuvem.png') }}" alt="" class="absolute w-[100px] left-5 top-2.5 opacity-60">
+                <img src="{{ asset('images/hero/farol.png') }}" alt="" class="absolute w-[190px] left-5 bottom-0">
+                <img src="{{ asset('images/hero/cacto.png') }}" alt="" class="absolute w-[62px] right-1.5 bottom-0">
+            </div>
         </div>
 
-        <!-- Posts Grid -->
-        @if($recentPosts->count() > 0)
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($recentPosts as $post)
-                    <article class="group bg-ink-900 rounded-2xl overflow-hidden hover:bg-ink-800 transition-all">
-                        <!-- Image -->
-                        @if($post->getMainImage())
-                            <div class="aspect-video overflow-hidden bg-ink-800">
-                                <img src="{{ $post->getMainImage() }}" alt="{{ $post->title }}"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            </div>
+        @if ($recentPosts->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5.5">
+                @foreach ($recentPosts as $i => $post)
+                    <article class="bg-white rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(8,45,82,.07)] transition-all hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(8,45,82,.1)]">
+                        @if ($post->getMainImage())
+                            <div class="aspect-[16/7.5] bg-cover bg-center" style="background-image: url('{{ $post->getMainImage() }}')"></div>
                         @else
-                            <div class="aspect-video bg-ink-800 flex items-center justify-center">
-                                <span class="font-display text-6xl font-semibold text-ink-700">PHP</span>
+                            <div @class([
+                                'aspect-[16/7.5] grid place-items-center text-azul-claro text-4xl',
+                                'bg-[linear-gradient(135deg,#0b1a2e,#12345b)]' => $i % 3 === 0,
+                                'bg-[linear-gradient(135deg,#0a1b2f,#123a5d)]' => $i % 3 === 1,
+                                'bg-[linear-gradient(135deg,#0d223b,#16406a)]' => $i % 3 === 2,
+                            ])>
+                                @if ($i % 3 === 0)
+                                    <span class="font-mono text-[22px] text-[#6fb7ee]">&lt;?php</span>
+                                @elseif ($i % 3 === 1)
+                                    <x-phosphor-stack class="w-10 h-10" />
+                                @else
+                                    <x-phosphor-git-branch class="w-10 h-10" />
+                                @endif
                             </div>
                         @endif
 
-                        <div class="p-6">
-                            <!-- Category & Meta -->
-                            <div class="flex items-center justify-between mb-3">
-                                @if($post->category)
-                                    <span class="px-3 py-1 bg-accent-500/15 text-accent text-xs font-medium rounded-full">
-                                        {{ $post->category->name }}
-                                    </span>
-                                @endif
-                                <span class="text-ink-400 text-xs">
-                                    {{ $this->getReadTime($post->content_blocks) }} de leitura
-                                </span>
-                            </div>
-
-                            <!-- Title -->
-                            <h3 class="font-display text-xl font-semibold text-ink-100 mb-3 line-clamp-2 group-hover:text-accent transition-colors">
-                                <a href="{{ route('blog.show', $post->slug) }}">
-                                    {{ $post->title }}
-                                </a>
-                            </h3>
-
-                            <!-- Author & Date -->
-                            <div class="flex items-center gap-3 pt-4 border-t border-ink-700">
-                                @if($post->author)
-                                    <div class="flex items-center flex-1">
-                                        @if($post->author->getAvatar())
-                                            <img src="{{ $post->author->getAvatar() }}" alt="{{ $post->author->name }}"
-                                                 class="w-8 h-8 rounded-full mr-2">
-                                        @endif
-                                        <div class="min-w-0">
-                                            <p class="text-sm text-ink-100 font-medium truncate">{{ $post->author->name }}</p>
-                                        </div>
-                                    </div>
-                                @endif
-                                @if($post->published_at)
-                                    <time class="text-xs text-ink-400">
-                                        {{ $post->published_at->translatedFormat('d M') }}
-                                    </time>
-                                @endif
-                            </div>
+                        <div class="p-[16px_18px_18px] grid gap-2">
+                            <em class="not-italic w-fit text-[9.5px] font-semibold uppercase tracking-[0.08em] text-azul-principal bg-azul-fundo border border-azul-principal/25 px-2 py-0.5 rounded">
+                                {{ $post->category?->name ?? 'Artigo' }}
+                            </em>
+                            <h4 class="text-[15px] font-semibold leading-[1.25] text-preto">
+                                {{ $post->title }}
+                            </h4>
+                            <a href="{{ route('blog.show', $post->slug) }}" class="group inline-flex items-center gap-1.5 text-xs font-semibold text-azul-principal mt-1">
+                                Ler agora
+                                <x-phosphor-arrow-right class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                            </a>
                         </div>
                     </article>
                 @endforeach
             </div>
         @else
-            <!-- Empty state -->
-            <div class="text-center py-16">
-                <svg class="w-16 h-16 mx-auto text-ink-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                </svg>
-                <p class="text-ink-400">Nenhum artigo publicado ainda. Em breve!</p>
-            </div>
+            <p class="text-center text-cinza py-10">Nenhum artigo publicado ainda. Em breve!</p>
         @endif
 
-        <!-- View all CTA -->
-        <div class="text-center mt-12">
-            <a href="/blog" class="inline-flex items-center px-6 py-3 bg-accent-600 hover:bg-accent-700 active:scale-[0.98] text-white font-semibold rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-300">
-                Ver todos os artigos
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
+        <div class="text-center mt-9">
+            <a href="{{ route('blog.index') }}"
+               class="inline-flex items-center gap-2.5 px-[18px] py-[11px] rounded-full bg-azul-principal hover:bg-[#1779bb] text-white font-semibold text-[13px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(30,142,219,.25)]">
+                Ver todos os conteúdos
+                <x-phosphor-arrow-right class="w-4 h-4" />
             </a>
         </div>
     </div>
