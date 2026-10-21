@@ -53,6 +53,15 @@ class Event extends Model
         return $query->where('starts_at', '>=', now());
     }
 
+    /**
+     * @param  Builder<Event>  $query
+     * @return Builder<Event>
+     */
+    public function scopePast(Builder $query): Builder
+    {
+        return $query->where('starts_at', '<', now());
+    }
+
     public function getBanner(): ?string
     {
         if ($this->banner) {

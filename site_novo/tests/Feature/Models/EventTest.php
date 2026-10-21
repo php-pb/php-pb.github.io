@@ -20,6 +20,14 @@ test('upcoming scope only returns events starting in the future', function () {
         ->and(Event::upcoming()->first()->id)->toBe($upcoming->id);
 });
 
+test('past scope only returns events that already started', function () {
+    $past = Event::factory()->past()->create();
+    Event::factory()->create(['starts_at' => now()->addDay()]);
+
+    expect(Event::past()->get())->toHaveCount(1)
+        ->and(Event::past()->first()->id)->toBe($past->id);
+});
+
 test('getBanner returns the storage url when a banner is set', function () {
     $event = Event::factory()->create(['banner' => 'events/banner.jpg']);
 
