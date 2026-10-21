@@ -4,10 +4,11 @@
 
 <p align="center">
   <a href="https://php-pb.net"><img src="https://img.shields.io/badge/site-php--pb.net-blue?style=flat-square" alt="Site"></a>
-  <a href="https://t.me/phppb"><img src="https://img.shields.io/badge/telegram-@phppb-blue?style=flat-square&logo=telegram" alt="Telegram"></a>
-  <a href="https://github.com/php-pb/php-pb.github.io/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"></a>
+  <a href="https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t"><img src="https://img.shields.io/badge/whatsapp-entrar-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
+  <a href="https://github.com/php-pb/php-pb.github.io/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"></a>
   <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=flat-square&logo=laravel" alt="Laravel">
   <img src="https://img.shields.io/badge/Livewire-4-FB70A9?style=flat-square" alt="Livewire">
+  <img src="https://img.shields.io/badge/Filament-5-FDAE4B?style=flat-square" alt="Filament">
   <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss" alt="Tailwind">
 </p>
 
@@ -23,7 +24,7 @@ A **PHP-PB** é uma comunidade de desenvolvedores PHP do estado da Paraíba, Bra
 
 ### O que fazemos
 
-- **Grupo no Telegram** - Discussões diárias sobre PHP, Laravel, dúvidas técnicas
+- **Grupo no WhatsApp** - Discussões diárias sobre PHP, Laravel, dúvidas técnicas
 - **Meetups & Hangouts** - Encontros presenciais e online com palestras
 - **Blog** - Artigos técnicos escritos pela comunidade
 - **Vagas** - Oportunidades de emprego compartilhadas
@@ -38,7 +39,9 @@ A **PHP-PB** é uma comunidade de desenvolvedores PHP do estado da Paraíba, Bra
 | **Tailwind CSS** | 4 | Framework CSS utility-first |
 | **Alpine.js** | 3 | Interatividade (incluso no Livewire) |
 | **MySQL** | 8 | Banco de dados |
-| **FilamentPHP** | 5 | Painel administrativo |
+| **FilamentPHP** | 5 | Painel administrativo e área de membro |
+| **Phosphor Icons** | - | Ícones do design system |
+| **Pest** | - | Testes automatizados |
 
 ## Estrutura do Projeto
 
@@ -151,23 +154,36 @@ npm run build
 npm run dev
 ```
 
+## CI/CD
+
+- **CI** (`.github/workflows/ci.yml`): roda em todo push/PR na `master` - Pint (formatação), Larastan (análise estática) e a suíte de testes Pest.
+- **Deploy** (`.github/workflows/deploy.yml`): só dispara ao criar uma tag no formato `v*.*.*`. Builda os assets, empacota a aplicação e publica via SSH/SCP na Hostinger.
+
+```bash
+# Disparar um deploy em produção
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 ## Comunidades Parceiras
 
 Fazemos parte de uma rede de comunidades PHP do Nordeste:
 
-| Comunidade | Estado | Link |
-|------------|--------|------|
-| **PHP-PB** | Paraíba | [php-pb.net](https://php-pb.net) |
-| **PHP com Rapadura** | Ceará | [phpcomrapadura.org](https://phpcomrapadura.org) |
-| **PHP-PE** | Pernambuco | - |
-| **PHP-RN** | Rio Grande do Norte | - |
+| Comunidade | Estado |
+|------------|--------|
+| **PHP-PB** | Paraíba |
+| **PHP-PI** | Piauí |
+| **PHP-MA** | Maranhão |
+| **PHP com Rapadura** | Ceará |
+| **PHP-PE** | Pernambuco |
+| **PHP-RN** | Rio Grande do Norte |
 
 Juntos organizamos o **[PHPeste](https://phpeste.dev)** - a maior conferência PHP do Nordeste brasileiro!
 
 ## Links
 
 - [Site Oficial](https://php-pb.net)
-- [Telegram](https://t.me/phppb)
+- [WhatsApp](https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t)
 - [GitHub](https://github.com/php-pb)
 - [Twitter/X](https://twitter.com/phppb)
 - [Facebook](https://www.facebook.com/groups/php.pb)
