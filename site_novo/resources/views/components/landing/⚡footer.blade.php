@@ -13,9 +13,9 @@ new class extends Component
         <div>
             <a href="/" class="inline-flex items-center gap-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-azul-principal">
                 <img src="{{ asset('images/hero/mascote.png') }}" alt="" class="h-[46px] w-auto">
-                <span class="flex flex-col leading-[0.9] font-display">
-                    <b class="text-2xl font-extrabold text-azul-marinho tracking-[-0.5px]">PHP</b>
-                    <b class="text-2xl font-extrabold text-azul-marinho tracking-[-0.5px]">PB</b>
+                <span class="flex flex-col gap-0 font-display">
+                    <b class="text-2xl leading-none font-extrabold text-azul-marinho tracking-[-0.5px]">PHP</b>
+                    <b class="text-2xl leading-none font-extrabold text-azul-marinho tracking-[-0.5px]">PB</b>
                 </span>
             </a>
             <p class="mt-3 font-display font-semibold text-[13px] leading-[1.3] text-azul-marinho">

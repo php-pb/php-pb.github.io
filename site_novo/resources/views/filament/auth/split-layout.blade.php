@@ -23,9 +23,9 @@
         <div class="fi-login-brand-panel relative hidden lg:flex lg:w-[420px] xl:w-[480px] shrink-0 flex-col justify-between overflow-hidden p-12 text-white">
             <div class="relative z-10 flex items-center gap-3">
                 <img src="{{ asset('images/hero/mascote.png') }}" alt="" class="h-10 w-auto">
-                <span class="flex flex-col leading-[0.9]" style="font-family: 'Poppins', sans-serif;">
-                    <b class="text-lg font-extrabold">PHP</b>
-                    <b class="text-lg font-extrabold">PB</b>
+                <span class="flex flex-col gap-0" style="font-family: 'Poppins', sans-serif;">
+                    <b class="text-lg leading-none font-extrabold">PHP</b>
+                    <b class="text-lg leading-none font-extrabold">PB</b>
                 </span>
             </div>
 
