@@ -1,4 +1,39 @@
-<x-layouts.app :title="$post->title . ' - PHP-PB'">
+<x-layouts.app
+    :title="$post->title . ' - PHP-PB'"
+    :description="$post->getExcerpt() ?: 'Artigo da comunidade PHP da Paraíba.'"
+    :image="$post->getMainImage()"
+    type="article"
+>
+    <x-slot:head>
+        <script type="application/ld+json">
+            {!! json_encode([
+                '@'.'context' => 'https://schema.org',
+                '@type' => 'BlogPosting',
+                'headline' => $post->title,
+                'description' => $post->getExcerpt() ?: null,
+                'image' => $post->getMainImage(),
+                'datePublished' => $post->published_at?->toIso8601String(),
+                'dateModified' => $post->updated_at?->toIso8601String(),
+                'author' => $post->author ? [
+                    '@type' => 'Person',
+                    'name' => $post->author->name,
+                ] : null,
+                'publisher' => [
+                    '@type' => 'Organization',
+                    'name' => 'PHP-PB',
+                    'logo' => [
+                        '@type' => 'ImageObject',
+                        'url' => asset('images/hero/mascote.png'),
+                    ],
+                ],
+                'mainEntityOfPage' => [
+                    '@type' => 'WebPage',
+                    '@id' => route('blog.show', $post->slug),
+                ],
+            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+        </script>
+    </x-slot:head>
+
     <livewire:landing.header />
 
     <main class="bg-areia">

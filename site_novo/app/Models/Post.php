@@ -81,4 +81,14 @@ class Post extends Model
 
         return $this->main_image_url;
     }
+
+    public function getExcerpt(int $length = 160): string
+    {
+        $text = collect($this->content_blocks ?? [])
+            ->first(fn (array $block) => ($block['type'] ?? null) === 'paragraph' && filled($block['data']['text'] ?? null));
+
+        $plainText = trim(html_entity_decode(strip_tags($text['data']['text'] ?? ''), ENT_QUOTES));
+
+        return str($plainText)->limit($length)->toString();
+    }
 }

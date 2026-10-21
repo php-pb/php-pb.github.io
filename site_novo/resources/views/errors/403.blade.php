@@ -1,4 +1,4 @@
-<x-layouts.app title="Acesso restrito - PHP-PB">
+<x-layouts.app title="Acesso restrito - PHP-PB" description="Você não tem permissão pra acessar esta área do site PHP-PB." :noindex="true">
     <livewire:landing.header />
 
     <main class="bg-areia">

@@ -1,4 +1,43 @@
-<x-layouts.app title="Eventos - PHP-PB">
+<x-layouts.app
+    title="Eventos - PHP-PB"
+    description="Participe dos meetups, workshops e conferências da comunidade PHP da Paraíba. Confira a agenda de próximos eventos."
+>
+    @if ($events->count() > 0)
+        <x-slot:head>
+            <script type="application/ld+json">
+                {!! json_encode(
+                    $events->map(fn ($event) => [
+                        '@'.'context' => 'https://schema.org',
+                        '@type' => 'Event',
+                        'name' => $event->title,
+                        'description' => $event->description,
+                        'startDate' => $event->starts_at->toIso8601String(),
+                        'eventAttendanceMode' => $event->type->value === 'online'
+                            ? 'https://schema.org/OnlineEventAttendanceMode'
+                            : 'https://schema.org/OfflineEventAttendanceMode',
+                        'eventStatus' => 'https://schema.org/EventScheduled',
+                        'location' => $event->type->value === 'online' ? [
+                            '@type' => 'VirtualLocation',
+                            'url' => $event->external_url ?? route('events.index'),
+                        ] : [
+                            '@type' => 'Place',
+                            'name' => $event->location,
+                            'address' => $event->location,
+                        ],
+                        'image' => $event->getBanner(),
+                        'url' => $event->external_url ?? route('events.index'),
+                        'organizer' => [
+                            '@type' => 'Organization',
+                            'name' => 'PHP-PB',
+                            'url' => config('app.url'),
+                        ],
+                    ])->values(),
+                    JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
+                ) !!}
+            </script>
+        </x-slot:head>
+    @endif
+
     <livewire:landing.header />
 
     <main>

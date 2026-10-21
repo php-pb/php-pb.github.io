@@ -1,4 +1,7 @@
-<x-layouts.app title="Palestrantes - PHP-PB">
+<x-layouts.app
+    title="Palestrantes - PHP-PB"
+    description="Conheça os palestrantes que já passaram pelos eventos da comunidade PHP da Paraíba."
+>
     <livewire:landing.header />
 
     <main>

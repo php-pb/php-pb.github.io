@@ -46,9 +46,9 @@ new class extends Component
                    class="text-azul-marinho hover:text-azul-principal transition-colors">
                     <x-phosphor-github-logo class="w-6 h-6" />
                 </a>
-                <a href="https://t.me/phppb" target="_blank" rel="noopener" aria-label="Telegram"
+                <a href="https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t" target="_blank" rel="noopener" aria-label="WhatsApp"
                    class="text-azul-marinho hover:text-azul-principal transition-colors">
-                    <x-phosphor-telegram-logo class="w-6 h-6" />
+                    <x-phosphor-whatsapp-logo class="w-6 h-6" />
                 </a>
                 <a href="https://twitter.com/phppb" target="_blank" rel="noopener" aria-label="Twitter/X"
                    class="text-azul-marinho hover:text-azul-principal transition-colors">

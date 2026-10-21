@@ -1,4 +1,7 @@
-<x-layouts.app title="Vagas - PHP-PB">
+<x-layouts.app
+    title="Vagas - PHP-PB"
+    description="Vagas de emprego para desenvolvedores PHP compartilhadas pela comunidade e empresas parceiras da PHP-PB."
+>
     <livewire:landing.header />
 
     <main>
