@@ -15,34 +15,40 @@ new class extends Component
             Fazemos parte de uma rede de comunidades PHP do <span class="text-azul-principal">Nordeste.</span>
         </h3>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
             <div class="text-center">
-                <div class="grid place-items-center w-16 h-16 mx-auto mb-3 rounded-full bg-white text-azul-principal font-display font-bold text-lg shadow-[0_4px_14px_rgba(8,45,82,.08)]">PI</div>
+                <div class="grid place-items-center w-20 h-20 mx-auto mb-3 p-2 rounded-full bg-white shadow-[0_4px_14px_rgba(8,45,82,.08)]">
+                    <img src="{{ asset('images/communities/php-pi.png') }}" alt="PHP-PI" class="w-full h-full object-contain">
+                </div>
                 <h4 class="text-[13px] font-semibold text-preto">PHP-PI</h4>
                 <p class="text-[11.5px] text-cinza">Piauí</p>
             </div>
             <div class="text-center">
-                <div class="grid place-items-center w-16 h-16 mx-auto mb-3 rounded-full bg-white text-azul-principal font-display font-bold text-lg shadow-[0_4px_14px_rgba(8,45,82,.08)]">MA</div>
+                <div class="grid place-items-center w-20 h-20 mx-auto mb-3 p-2 rounded-full bg-white shadow-[0_4px_14px_rgba(8,45,82,.08)]">
+                    <img src="{{ asset('images/communities/php-ma.png') }}" alt="PHP Maranhão" class="w-full h-full object-contain">
+                </div>
                 <h4 class="text-[13px] font-semibold text-preto">PHP-MA</h4>
                 <p class="text-[11.5px] text-cinza">Maranhão</p>
             </div>
             <div class="text-center">
-                <div class="grid place-items-center w-16 h-16 mx-auto mb-3 rounded-full bg-white text-azul-principal font-display font-bold text-lg shadow-[0_4px_14px_rgba(8,45,82,.08)]">CE</div>
+                <div class="grid place-items-center w-20 h-20 mx-auto mb-3 p-2 rounded-full bg-white shadow-[0_4px_14px_rgba(8,45,82,.08)]">
+                    <img src="{{ asset('images/communities/php-com-rapadura.png') }}" alt="PHP com Rapadura" class="w-full h-full object-contain">
+                </div>
                 <h4 class="text-[13px] font-semibold text-preto">PHP com Rapadura</h4>
                 <p class="text-[11.5px] text-cinza">Ceará</p>
             </div>
+            {{-- ParaíbaJS oculta temporariamente: comunidade não tem logo disponível ainda --}}
             <div class="text-center">
-                <div class="grid place-items-center w-16 h-16 mx-auto mb-3 rounded-full bg-white text-azul-principal font-display font-bold text-lg shadow-[0_4px_14px_rgba(8,45,82,.08)]">JS</div>
-                <h4 class="text-[13px] font-semibold text-preto">ParaíbaJS</h4>
-                <p class="text-[11.5px] text-cinza">Paraíba</p>
-            </div>
-            <div class="text-center">
-                <div class="grid place-items-center w-16 h-16 mx-auto mb-3 rounded-full bg-white text-azul-principal font-display font-bold text-lg shadow-[0_4px_14px_rgba(8,45,82,.08)]">PE</div>
+                <div class="grid place-items-center w-20 h-20 mx-auto mb-3 p-2 rounded-full bg-white shadow-[0_4px_14px_rgba(8,45,82,.08)]">
+                    <img src="{{ asset('images/communities/php-pe.png') }}" alt="PHP-PE" class="w-full h-full object-contain">
+                </div>
                 <h4 class="text-[13px] font-semibold text-preto">PHP-PE</h4>
                 <p class="text-[11.5px] text-cinza">Pernambuco</p>
             </div>
             <div class="text-center">
-                <div class="grid place-items-center w-16 h-16 mx-auto mb-3 rounded-full bg-white text-azul-principal font-display font-bold text-lg shadow-[0_4px_14px_rgba(8,45,82,.08)]">RN</div>
+                <div class="grid place-items-center w-20 h-20 mx-auto mb-3 p-2 rounded-full bg-white shadow-[0_4px_14px_rgba(8,45,82,.08)]">
+                    <img src="{{ asset('images/communities/php-rn.png') }}" alt="PHP-RN" class="w-full h-full object-contain">
+                </div>
                 <h4 class="text-[13px] font-semibold text-preto">PHP-RN</h4>
                 <p class="text-[11.5px] text-cinza">Rio Grande do Norte</p>
             </div>

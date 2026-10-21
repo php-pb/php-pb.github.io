@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\Login;
+use App\Filament\Auth\Register;
 use App\Filament\Member\Pages\Dashboard;
 use App\Filament\Member\Pages\EditProfile;
 use Filament\Enums\UserMenuPosition;
@@ -31,6 +32,7 @@ class MemberPanelProvider extends PanelProvider
             ->path('membro')
             ->viteTheme('resources/css/filament/membro/theme.css')
             ->login(Login::class)
+            ->registration(Register::class)
             ->colors([
                 'primary' => Color::generatePalette('#1e8edb'),
             ])

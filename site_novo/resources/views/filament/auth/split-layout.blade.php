@@ -1,5 +1,12 @@
 @php
+    use Filament\Support\Enums\Width;
+
     $renderHookScopes = $livewire?->getRenderHookScopes();
+    $maxContentWidth ??= (filament()->getSimplePageMaxContentWidth() ?? Width::Large);
+
+    if (is_string($maxContentWidth)) {
+        $maxContentWidth = Width::tryFrom($maxContentWidth) ?? $maxContentWidth;
+    }
 @endphp
 
 <x-filament-panels::layout.base :livewire="$livewire">
@@ -16,19 +23,16 @@
         <div class="fi-login-brand-panel relative hidden lg:flex lg:w-[420px] xl:w-[480px] shrink-0 flex-col justify-between overflow-hidden p-12 text-white">
             <div class="relative z-10 flex items-center gap-3">
                 <img src="{{ asset('images/hero/mascote.png') }}" alt="" class="h-10 w-auto">
-                <span class="flex flex-col leading-[0.9]" style="font-family: 'Poppins', sans-serif;">
-                    <b class="text-lg font-extrabold">PHP</b>
-                    <b class="text-lg font-extrabold">PB</b>
+                <span class="flex flex-col gap-0" style="font-family: 'Poppins', sans-serif;">
+                    <b class="text-lg leading-none font-extrabold">PHP</b>
+                    <b class="text-lg leading-none font-extrabold">PB</b>
                 </span>
             </div>
 
-            <!-- Ilustração decorativa (mesmos elementos da hero do site) -->
-            <div class="relative z-10 h-64 w-full" aria-hidden="true">
-                <img src="{{ asset('images/hero/nuvem.png') }}" alt="" class="absolute left-[2%] top-[14%] w-[34%] opacity-40">
-                <div class="absolute left-[26%] top-0 w-[44%] aspect-square rounded-full bg-[#F5B82E]"></div>
-                <img src="{{ asset('images/hero/palmeira.png') }}" alt="" class="absolute right-[6%] top-[10%] w-[26%]">
-                <img src="{{ asset('images/hero/farol.png') }}" alt="" class="absolute left-[30%] top-[4%] w-[40%]">
-                <img src="{{ asset('images/hero/mascote.png') }}" alt="" class="absolute bottom-0 left-0 w-[58%] drop-shadow-[0_12px_14px_rgba(8,45,82,.25)]">
+            <!-- Ilustração decorativa (cena do farol usada no CTA final do site) -->
+            <div class="relative z-10 w-full" aria-hidden="true">
+                <img src="{{ asset('images/hero/farol-cena.png') }}" alt="" class="w-full">
+                <img src="{{ asset('images/hero/mascote.png') }}" alt="" class="absolute left-[-8%] bottom-[-10%] w-[52%] drop-shadow-[0_12px_14px_rgba(8,45,82,.35)]">
             </div>
 
             <div class="relative z-10">
@@ -63,7 +67,7 @@
         </div>
 
         <!-- Formulário -->
-        <div class="fi-simple-main-ctn flex-1 flex flex-col">
+        <div class="fi-simple-main-ctn flex-1">
             @if (($hasTopbar ?? true) && filament()->auth()->check())
                 <div class="fi-simple-layout-header">
                     @if (filament()->hasDatabaseNotifications())
@@ -79,10 +83,13 @@
                 </div>
             @endif
 
-            <main class="flex-1 flex items-center justify-center p-6">
-                <div class="w-full fi-width-{{ ($maxContentWidth ?? \Filament\Support\Enums\Width::Large) instanceof \Filament\Support\Enums\Width ? ($maxContentWidth ?? \Filament\Support\Enums\Width::Large)->value : ($maxContentWidth ?? 'lg') }}">
-                    {{ $slot }}
-                </div>
+            <main
+                @class([
+                    'fi-simple-main',
+                    ($maxContentWidth instanceof Width) ? "fi-width-{$maxContentWidth->value}" : $maxContentWidth,
+                ])
+            >
+                {{ $slot }}
             </main>
         </div>
 
