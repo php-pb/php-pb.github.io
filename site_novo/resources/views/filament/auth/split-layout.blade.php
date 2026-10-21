@@ -1,5 +1,12 @@
 @php
+    use Filament\Support\Enums\Width;
+
     $renderHookScopes = $livewire?->getRenderHookScopes();
+    $maxContentWidth ??= (filament()->getSimplePageMaxContentWidth() ?? Width::Large);
+
+    if (is_string($maxContentWidth)) {
+        $maxContentWidth = Width::tryFrom($maxContentWidth) ?? $maxContentWidth;
+    }
 @endphp
 
 <x-filament-panels::layout.base :livewire="$livewire">
@@ -63,7 +70,7 @@
         </div>
 
         <!-- Formulário -->
-        <div class="fi-simple-main-ctn flex-1 flex flex-col">
+        <div class="fi-simple-main-ctn flex-1">
             @if (($hasTopbar ?? true) && filament()->auth()->check())
                 <div class="fi-simple-layout-header">
                     @if (filament()->hasDatabaseNotifications())
@@ -79,10 +86,13 @@
                 </div>
             @endif
 
-            <main class="flex-1 flex items-center justify-center p-6">
-                <div class="w-full fi-width-{{ ($maxContentWidth ?? \Filament\Support\Enums\Width::Large) instanceof \Filament\Support\Enums\Width ? ($maxContentWidth ?? \Filament\Support\Enums\Width::Large)->value : ($maxContentWidth ?? 'lg') }}">
-                    {{ $slot }}
-                </div>
+            <main
+                @class([
+                    'fi-simple-main',
+                    ($maxContentWidth instanceof Width) ? "fi-width-{$maxContentWidth->value}" : $maxContentWidth,
+                ])
+            >
+                {{ $slot }}
             </main>
         </div>
 
