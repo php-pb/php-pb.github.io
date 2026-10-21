@@ -1,0 +1,23 @@
+name: plataforma-phppb
+recipe: laravel
+config:
+  webroot: public
+  php: '8.4'
+  database: mariadb:10.6
+
+services:
+  node:
+    type: node:24
+    build:
+      - npm install
+  redis:
+    type: redis:8
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+
+tooling:
+  build-assets:
+    service: node
+    cmd: npm run build

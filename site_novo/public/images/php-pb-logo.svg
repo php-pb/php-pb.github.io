@@ -1,0 +1,13 @@
+<svg width="600" height="600" viewBox="0 0 256 134" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="128" cy="67" rx="128" ry="67" fill="white"/>
+
+    <text
+        x="50%"
+        y="55%"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        fill="#4169a4"
+        style="font-family: Arial, sans-serif; font-weight: bold; font-size: 55px; font-style: italic;">
+        php-pb
+    </text>
+</svg>

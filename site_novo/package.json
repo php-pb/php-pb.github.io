@@ -1,0 +1,19 @@
+{
+  "$schema": "https://www.schemastore.org/package.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "prepare": "cd .. && git config core.hooksPath site_novo/.husky"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "axios": "^1.11.0",
+    "concurrently": "^9.0.1",
+    "husky": "^9.1.7",
+    "laravel-vite-plugin": "^2.0.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^7.0.7"
+  }
+}

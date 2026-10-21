@@ -1,0 +1,51 @@
+.git
+.gitignore
+.gitattributes
+.env
+.env.example
+.env.local
+.env.*.local
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Dependencies
+/node_modules
+/vendor
+
+# Build outputs
+/public/build
+/public/hot
+/public/storage
+
+# Laravel specific
+/storage/*.key
+/storage/app/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+!/storage/app/.gitignore
+!/storage/framework/.gitignore
+!/storage/framework/cache/.gitignore
+!/storage/framework/sessions/.gitignore
+!/storage/framework/views/.gitignore
+!/storage/logs/.gitignore
+
+# Testing
+/coverage
+.phpunit.result.cache
+
+# Docker
+docker-compose*.yml
+Dockerfile
+
+# Misc
+*.md
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,73 @@
+services:
+  app:
+    build:
+      context: ./site_novo
+      dockerfile: Dockerfile
+    container_name: php-pb-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site_novo:/var/www
+      - laravel-storage:/var/www/storage
+      - laravel-cache:/var/www/bootstrap/cache
+      - ./site_novo/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - php-pb-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: php-pb-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: php_pb
+      MYSQL_USER: php_pb
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - php-pb-network
+
+  redis:
+    image: redis:alpine
+    container_name: php-pb-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - php-pb-network
+
+  # Opcional: PHPMyAdmin para gerenciar o banco
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: php-pb-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: php_pb
+      PMA_PASSWORD: secret
+    depends_on:
+      - mysql
+    networks:
+      - php-pb-network
+
+networks:
+  php-pb-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:
+  laravel-storage:
+  laravel-cache:

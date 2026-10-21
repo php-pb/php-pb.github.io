@@ -1,0 +1,9 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* Painel de marca da tela de login - degradê fixo na paleta PHP PB */
+.fi-login-brand-panel {
+    background: linear-gradient(135deg, #082d52 0%, #1e8edb 100%);
+}

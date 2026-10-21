@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+defaults:
+  run:
+    working-directory: site_novo
+
+jobs:
+  pint:
+    name: Pint (formatação)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          coverage: none
+
+      - name: Cache dependências do Composer
+        uses: actions/cache@v4
+        with:
+          path: site_novo/vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('site_novo/composer.lock') }}
+
+      - name: Instalar dependências do Composer
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Rodar Pint
+        run: ./vendor/bin/pint --test
+
+  larastan:
+    name: Larastan (análise estática)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          coverage: none
+
+      - name: Cache dependências do Composer
+        uses: actions/cache@v4
+        with:
+          path: site_novo/vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('site_novo/composer.lock') }}
+
+      - name: Instalar dependências do Composer
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Rodar Larastan
+        run: ./vendor/bin/phpstan analyse --memory-limit=1G
+
+  tests:
+    name: Testes (Pest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: pdo_sqlite, sqlite3
+          coverage: none
+
+      - name: Cache dependências do Composer
+        uses: actions/cache@v4
+        with:
+          path: site_novo/vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('site_novo/composer.lock') }}
+
+      - name: Instalar dependências do Composer
+        run: composer install --no-interaction --prefer-dist
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: site_novo/package-lock.json
+
+      - name: Instalar dependências do npm
+        run: npm ci
+
+      - name: Buildar assets
+        run: npm run build
+
+      - name: Preparar ambiente
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Rodar testes
+        run: php artisan test --compact

@@ -1,0 +1,196 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    /* Tipografia */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Poppins', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-script: 'Satisfy', cursive;
+
+    /* Paleta oficial do design system PHP PB (ver design/design.png) */
+    --color-azul-marinho: #082d52;
+    --color-azul-principal: #1e8edb;
+    --color-azul-claro: #8dd0f3;
+    --color-azul-fundo: #ebf4fc;
+
+    --color-preto: #0f172a;
+    --color-cinza: #64748b;
+    --color-cinza-claro: #cbd5e1;
+    --color-areia: #f9f6ee;
+
+    --color-amarelo-nordeste: #f5b82e;
+    --color-verde-cactos: #10b981;
+    --color-vermelho-terra: #d45a3b;
+}
+
+html {
+    scroll-padding-top: 84px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-areia);
+    color: var(--color-preto);
+}
+
+/* Empurra o footer pro final da viewport em páginas com pouco conteúdo
+   (ex: listagens vazias de eventos/blog). */
+body > main {
+    flex: 1 0 auto;
+}
+
+/* Faixa de título das páginas internas e seções de destaque -
+   degradê fixo na escala azul, com texto branco legível. */
+.gradient-hero {
+    background: linear-gradient(135deg, var(--color-azul-marinho) 0%, var(--color-azul-principal) 100%);
+}
+
+.gradient-cta {
+    background: linear-gradient(135deg, var(--color-azul-marinho) 0%, var(--color-azul-principal) 100%);
+}
+
+.gradient-cta:hover {
+    background: linear-gradient(135deg, var(--color-azul-principal) 0%, var(--color-azul-claro) 100%);
+}
+
+/* Esconde a scrollbar em carrosséis com overflow-x (ex: eventos) */
+.no-scrollbar {
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Animações */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Tipografia display / script */
+.font-display {
+    font-family: var(--font-display);
+}
+
+.font-script {
+    font-family: var(--font-script);
+}
+
+/* Corpo de texto rico do blog (RichEditor do Filament) - sem plugin de
+   tipografia, estilado manualmente com os tokens do design system. */
+.post-content {
+    color: var(--color-preto);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+}
+
+.post-content > * + * {
+    margin-top: 1.25em;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-azul-marinho);
+    line-height: 1.25;
+    margin-top: 1.75em;
+}
+
+.post-content h2 {
+    font-size: 1.5em;
+}
+
+.post-content h3 {
+    font-size: 1.25em;
+}
+
+.post-content a {
+    color: var(--color-azul-principal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.post-content strong {
+    font-weight: 700;
+    color: var(--color-azul-marinho);
+}
+
+.post-content ul,
+.post-content ol {
+    padding-left: 1.5em;
+}
+
+.post-content ul {
+    list-style: disc;
+}
+
+.post-content ol {
+    list-style: decimal;
+}
+
+.post-content blockquote {
+    border-left: 3px solid var(--color-azul-principal);
+    background: var(--color-azul-fundo);
+    padding: 0.75em 1.25em;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: var(--color-azul-marinho);
+}
+
+.post-content code {
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    background: var(--color-azul-fundo);
+    color: var(--color-azul-marinho);
+    padding: 0.15em 0.4em;
+    border-radius: 0.3em;
+    font-size: 0.875em;
+}
+
+.post-content pre {
+    background: var(--color-preto);
+    color: var(--color-azul-claro);
+    padding: 1.25em;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+}
+
+.post-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+.post-content img {
+    border-radius: 0.75rem;
+}
+
+/* Scroll reveal - preparação */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}

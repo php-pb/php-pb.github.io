@@ -1,2 +1,17 @@
-_site
-node_modules/**/*
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files (keep examples)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log

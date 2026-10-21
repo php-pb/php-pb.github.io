@@ -1,0 +1,23 @@
+cd site_novo
+
+echo "==> Rodando Pint..."
+./vendor/bin/pint --dirty --test
+pint_status=$?
+
+echo "==> Rodando Larastan..."
+./vendor/bin/phpstan analyse --memory-limit=1G
+phpstan_status=$?
+
+if [ $pint_status -ne 0 ]; then
+  echo ""
+  echo "Pint encontrou problemas de formatação. Rode 'composer pint' e comite de novo."
+fi
+
+if [ $phpstan_status -ne 0 ]; then
+  echo ""
+  echo "Larastan encontrou erros. Corrija antes de comitar."
+fi
+
+if [ $pint_status -ne 0 ] || [ $phpstan_status -ne 0 ]; then
+  exit 1
+fi
