@@ -1,4 +1,4 @@
-<x-layouts.app title="Página não encontrada - PHP-PB">
+<x-layouts.app title="Página não encontrada - PHP-PB" description="A página que você procura não existe ou foi movida." :noindex="true">
     <livewire:landing.header />
 
     <main class="bg-areia">
