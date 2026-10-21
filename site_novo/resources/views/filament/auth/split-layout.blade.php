@@ -29,13 +29,10 @@
                 </span>
             </div>
 
-            <!-- Ilustração decorativa (mesmos elementos da hero do site) -->
-            <div class="relative z-10 h-64 w-full" aria-hidden="true">
-                <img src="{{ asset('images/hero/nuvem.png') }}" alt="" class="absolute left-[2%] top-[14%] w-[34%] opacity-40">
-                <div class="absolute left-[26%] top-0 w-[44%] aspect-square rounded-full bg-[#F5B82E]"></div>
-                <img src="{{ asset('images/hero/palmeira.png') }}" alt="" class="absolute right-[6%] top-[10%] w-[26%]">
-                <img src="{{ asset('images/hero/farol.png') }}" alt="" class="absolute left-[30%] top-[4%] w-[40%]">
-                <img src="{{ asset('images/hero/mascote.png') }}" alt="" class="absolute bottom-0 left-0 w-[58%] drop-shadow-[0_12px_14px_rgba(8,45,82,.25)]">
+            <!-- Ilustração decorativa (cena do farol usada no CTA final do site) -->
+            <div class="relative z-10 w-full" aria-hidden="true">
+                <img src="{{ asset('images/hero/farol-cena.png') }}" alt="" class="w-full">
+                <img src="{{ asset('images/hero/mascote.png') }}" alt="" class="absolute left-[-8%] bottom-[-10%] w-[52%] drop-shadow-[0_12px_14px_rgba(8,45,82,.35)]">
             </div>
 
             <div class="relative z-10">
