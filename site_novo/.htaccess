@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirecionar para public/ se não estiver já lá
+    RewriteCond %{HTTP_HOST} ^(www\.)?php-pb\.net$ [NC]
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ /public/$1 [L]
+</IfModule>
