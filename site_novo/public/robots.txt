@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /membro
+
+Sitemap: https://php-pb.net/sitemap.xml
