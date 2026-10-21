@@ -1,0 +1,199 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+env:
+  PHP_VERSION: "8.4"
+  NODE_VERSION: "24"
+
+defaults:
+  run:
+    working-directory: site_novo
+
+jobs:
+  deploy:
+    name: Build e Deploy pra Hostinger
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: site_novo/package-lock.json
+
+      - name: Cache de dependências do Composer
+        uses: actions/cache@v4
+        with:
+          path: site_novo/vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('site_novo/composer.lock') }}
+
+      - name: Instalar dependências do Composer (produção)
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+
+      - name: Instalar dependências do npm
+        run: npm ci
+
+      - name: Buildar assets do frontend
+        run: npm run build
+
+      - name: Criar .env de produção
+        run: |
+          cat > .env << EOF
+          APP_NAME="PHP-PB"
+          APP_ENV=production
+          APP_KEY="${{ secrets.APP_KEY }}"
+          APP_DEBUG=false
+          APP_URL="${{ secrets.APP_URL }}"
+
+          APP_LOCALE=pt_BR
+          APP_FALLBACK_LOCALE=en
+
+          LOG_CHANNEL=stack
+          LOG_LEVEL=error
+
+          DB_CONNECTION=mysql
+          DB_HOST="${{ secrets.DB_HOST }}"
+          DB_PORT="${{ secrets.DB_PORT }}"
+          DB_DATABASE="${{ secrets.DB_DATABASE }}"
+          DB_USERNAME="${{ secrets.DB_USERNAME }}"
+          DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
+
+          SESSION_DRIVER=database
+          SESSION_LIFETIME=120
+          SESSION_DOMAIN=null
+
+          BROADCAST_CONNECTION=log
+          FILESYSTEM_DISK=local
+          QUEUE_CONNECTION=database
+          CACHE_STORE=database
+
+          MAIL_MAILER="${{ secrets.MAIL_MAILER }}"
+          MAIL_HOST="${{ secrets.MAIL_HOST }}"
+          MAIL_PORT="${{ secrets.MAIL_PORT }}"
+          MAIL_USERNAME="${{ secrets.MAIL_USERNAME }}"
+          MAIL_PASSWORD="${{ secrets.MAIL_PASSWORD }}"
+          MAIL_ENCRYPTION="${{ secrets.MAIL_ENCRYPTION }}"
+          MAIL_FROM_ADDRESS="${{ secrets.MAIL_FROM_ADDRESS }}"
+          MAIL_FROM_NAME="PHP-PB"
+          EOF
+
+      - name: Preparar pacote de deploy
+        run: |
+          cat > .deployignore << EOF
+          .git/
+          .github/
+          .gitignore
+          .env.example
+          .husky/
+          .editorconfig
+          .gitattributes
+          .dockerignore
+          Dockerfile
+          docker/
+          .lando.yml
+          .mcp.json
+          .ai/
+          .claude/
+          tests/
+          node_modules/
+          package-lock.json
+          vite.config.js
+          .deployignore
+          EOF
+
+          rsync -av --exclude-from=.deployignore . ../deploy-package/
+
+          mkdir -p ../deploy-package/storage/{logs,app/public,framework/{cache/data,sessions,views}}
+          mkdir -p ../deploy-package/bootstrap/cache
+          touch ../deploy-package/storage/logs/.gitkeep
+
+          chmod -R 755 ../deploy-package/storage
+          chmod -R 755 ../deploy-package/bootstrap/cache
+
+      - name: Backup de storage/app no servidor
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT }}
+          timeout: 30s
+          command_timeout: 10m
+          script: |
+            cd /home/u486878136/domains/php-pb.net/public_html
+
+            mkdir -p /home/u486878136/backups/php-pb/storage
+
+            if [ -d "storage/app" ] && [ "$(ls -A storage/app 2>/dev/null)" ]; then
+              cp -r storage/app/* /home/u486878136/backups/php-pb/storage/ 2>/dev/null || true
+            fi
+
+      - name: Deploy via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT }}
+          source: "deploy-package/*"
+          target: "/home/u486878136/domains/php-pb.net/public_html"
+          strip_components: 1
+          rm: true
+          timeout: 30s
+          command_timeout: 10m
+
+      - name: Comandos pós-deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT }}
+          timeout: 30s
+          command_timeout: 10m
+          script: |
+            cd /home/u486878136/domains/php-pb.net/public_html
+
+            PHP_BIN="php"
+
+            # Restaura os uploads que existiam antes do deploy (posts, avatares etc)
+            if [ -d "/home/u486878136/backups/php-pb/storage" ] && [ "$(ls -A /home/u486878136/backups/php-pb/storage 2>/dev/null)" ]; then
+              mkdir -p storage/app
+              cp -r /home/u486878136/backups/php-pb/storage/* storage/app/ 2>/dev/null || true
+              rm -rf /home/u486878136/backups/php-pb
+            fi
+
+            $PHP_BIN artisan migrate --force
+
+            $PHP_BIN artisan config:clear
+            $PHP_BIN artisan cache:clear
+            $PHP_BIN artisan route:clear
+            $PHP_BIN artisan view:clear
+
+            $PHP_BIN artisan config:cache
+            $PHP_BIN artisan route:cache
+            $PHP_BIN artisan view:cache
+            $PHP_BIN artisan event:cache
+
+            find storage -type d -exec chmod 755 {} \; 2>/dev/null || true
+            find storage -type f -exec chmod 644 {} \; 2>/dev/null || true
+            find bootstrap/cache -type d -exec chmod 755 {} \; 2>/dev/null || true
+            find bootstrap/cache -type f -exec chmod 644 {} \; 2>/dev/null || true
+
+            # Link de storage manual (exec() geralmente desabilitado em shared hosting)
+            [ -L "public/storage" ] && rm "public/storage"
+            ln -sf "../storage/app/public" "public/storage"
