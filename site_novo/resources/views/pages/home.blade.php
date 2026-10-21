@@ -14,7 +14,7 @@
                 'description' => 'Comunidade de desenvolvedores PHP da Paraíba, promovendo meetups, conteúdo e networking desde 2012.',
                 'sameAs' => [
                     'https://github.com/php-pb',
-                    'https://t.me/phppb',
+                    'https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t',
                     'https://twitter.com/phppb',
                     'https://www.facebook.com/groups/php.pb',
                 ],
