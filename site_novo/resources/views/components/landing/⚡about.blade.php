@@ -12,7 +12,7 @@ new class extends Component
     <div class="relative max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] items-center gap-10 lg:gap-[60px]">
         <div class="relative">
             <div class="relative aspect-[1.35/1] overflow-hidden shadow-[0_10px_30px_rgba(8,45,82,.1)] rounded-[58%_42%_46%_54%/64%_52%_48%_36%]">
-                <img src="{{ asset('images/hero/praia.jpg') }}" alt="Orla de João Pessoa, Paraíba" class="w-full h-full object-cover">
+                <img src="{{ asset('images/hero/joao-pessoa.jpg') }}" alt="Orla de João Pessoa, Paraíba" class="w-full h-full object-cover">
             </div>
             <img src="{{ asset('images/hero/ondas.png') }}" alt="" class="absolute w-[120px] -right-8 -bottom-1" aria-hidden="true">
         </div>
