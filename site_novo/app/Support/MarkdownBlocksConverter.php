@@ -4,6 +4,7 @@ namespace App\Support;
 
 use DOMDocument;
 use DOMElement;
+use Filament\Forms\Components\RichEditor\RichContentRenderer;
 use Illuminate\Support\Str;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 
@@ -77,12 +78,29 @@ class MarkdownBlocksConverter
             $blocks[] = [
                 'type' => 'paragraph',
                 'data' => [
-                    'text' => $dom->saveHTML($node) ?: '',
+                    'text' => self::htmlToRichEditorState($dom->saveHTML($node) ?: ''),
                 ],
             ];
         }
 
         return $blocks;
+    }
+
+    /**
+     * O campo "text" do bloco de parágrafo é um RichEditor do Filament, cujo
+     * estado em memória (antes de salvar) é sempre um documento TipTap em
+     * array, não a string HTML final — essa só existe depois que o form é
+     * salvo (dehydratado). Como escrevemos esse estado diretamente via
+     * $set(), precisamos produzir o mesmo array que o Filament produziria
+     * ao carregar o form normalmente, ou o editor quebra ao tentar salvar.
+     *
+     * @return array<string, mixed>
+     */
+    private static function htmlToRichEditorState(string $html): array
+    {
+        $document = RichContentRenderer::make($html)->getEditor()->getDocument();
+
+        return json_decode(json_encode($document), true);
     }
 
     private static function mapHeadingLevel(string $tagName): string

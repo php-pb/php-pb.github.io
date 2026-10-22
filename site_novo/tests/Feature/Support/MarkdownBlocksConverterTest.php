@@ -1,6 +1,17 @@
 <?php
 
 use App\Support\MarkdownBlocksConverter;
+use Filament\Forms\Components\RichEditor\RichContentRenderer;
+
+/**
+ * O bloco de parágrafo guarda seu texto como estado interno do RichEditor
+ * do Filament (documento TipTap em array), não como HTML puro — por isso
+ * os testes convertem de volta pra HTML pra conferir o conteúdo.
+ */
+function richEditorStateToHtml(array $state): string
+{
+    return RichContentRenderer::make($state)->toHtml();
+}
 
 test('it converts headings into title blocks with clamped levels', function () {
     $blocks = MarkdownBlocksConverter::toBlocks("# Nível 1\n\n## Nível 2\n\n### Nível 3\n\n##### Nível 5");
@@ -12,21 +23,32 @@ test('it converts headings into title blocks with clamped levels', function () {
         ->and($blocks[3])->toBe(['type' => 'title', 'data' => ['text' => 'Nível 5', 'level' => 'h4']]);
 });
 
-test('it converts a plain paragraph into a paragraph block with its html', function () {
+test('it converts a plain paragraph into a paragraph block holding a valid rich editor state', function () {
     $blocks = MarkdownBlocksConverter::toBlocks('Um **parágrafo** com `código`.');
 
     expect($blocks)->toHaveCount(1)
         ->and($blocks[0]['type'])->toBe('paragraph')
-        ->and($blocks[0]['data']['text'])->toBe('<p>Um <strong>parágrafo</strong> com <code>código</code>.</p>');
+        ->and($blocks[0]['data']['text'])->toBeArray()
+        ->and($blocks[0]['data']['text']['type'])->toBe('doc');
+
+    $html = richEditorStateToHtml($blocks[0]['data']['text']);
+
+    expect($html)->toContain('<strong>parágrafo</strong>')
+        ->and($html)->toContain('<code>código</code>');
 });
 
 test('it converts a list into a paragraph block preserving the list markup', function () {
     $blocks = MarkdownBlocksConverter::toBlocks("- um\n- dois");
 
     expect($blocks)->toHaveCount(1)
-        ->and($blocks[0]['type'])->toBe('paragraph')
-        ->and($blocks[0]['data']['text'])->toContain('<ul>')
-        ->and($blocks[0]['data']['text'])->toContain('<li>um</li>');
+        ->and($blocks[0]['type'])->toBe('paragraph');
+
+    $html = richEditorStateToHtml($blocks[0]['data']['text']);
+
+    expect($html)->toContain('<ul')
+        ->and($html)->toContain('<li')
+        ->and($html)->toContain('um')
+        ->and($html)->toContain('dois');
 });
 
 test('a standalone image paragraph becomes its own image block', function () {
@@ -47,8 +69,9 @@ test('an image inline with text stays inside the paragraph block instead of beco
     $blocks = MarkdownBlocksConverter::toBlocks('Veja a imagem: ![alt](https://exemplo.com/a.png) ao lado do texto.');
 
     expect($blocks)->toHaveCount(1)
-        ->and($blocks[0]['type'])->toBe('paragraph')
-        ->and($blocks[0]['data']['text'])->toContain('<img');
+        ->and($blocks[0]['type'])->toBe('paragraph');
+
+    expect(richEditorStateToHtml($blocks[0]['data']['text']))->toContain('<img');
 });
 
 test('toBuilderItems wraps each block with a unique uuid key, matching the filament builder format', function () {
