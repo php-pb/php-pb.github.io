@@ -3,6 +3,7 @@
 namespace App\Filament\Member\Resources;
 
 use App\Enums\PostStatus;
+use App\Filament\Actions\ImportMarkdownAction;
 use App\Filament\Fields\PostContent;
 use App\Filament\Member\Resources\PostResource\Pages;
 use App\Models\Post;
@@ -101,6 +102,7 @@ class PostResource extends Resource
 
             Section::make('Conteúdo')->schema([
                 Actions::make([
+                    ImportMarkdownAction::make('content_blocks'),
                     InlinePreviewAction::make()
                         ->label('Preview do Conteúdo')
                         ->builderPreview('content_blocks'),

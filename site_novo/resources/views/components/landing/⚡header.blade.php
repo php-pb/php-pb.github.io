@@ -48,6 +48,16 @@ new class extends Component
                     Como participar
                     <span class="absolute left-0 -bottom-1.5 h-0.5 w-0 bg-azul-principal transition-all duration-200 group-hover:w-full"></span>
                 </a>
+                <a href="{{ auth()->check() ? route('filament.membro.pages.dashboard') : route('filament.membro.auth.login') }}"
+                   class="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-azul-marinho hover:text-azul-principal transition-colors">
+                    <x-phosphor-user-circle class="w-[18px] h-[18px]" />
+                    @auth
+                        Meu painel
+                    @else
+                        Entrar
+                    @endauth
+                </a>
+
                 <a href="https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t" target="_blank" rel="noopener"
                    class="inline-flex items-center gap-2 px-[18px] py-[11px] bg-azul-principal hover:bg-[#1779bb] active:scale-[0.98] text-white text-[13px] font-semibold rounded-full transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(30,142,219,.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-azul-claro">
                     Seja parte
@@ -76,6 +86,15 @@ new class extends Component
             <a href="{{ route('blog.index') }}" class="block py-3.5 border-b border-azul-marinho/[0.07] text-[15px] font-medium {{ request()->routeIs('blog.*') ? 'text-azul-principal' : 'text-azul-marinho' }}">Conteúdos</a>
             <a href="/#comunidade" class="block py-3.5 border-b border-azul-marinho/[0.07] text-[15px] font-medium text-azul-marinho">Comunidade</a>
             <a href="/#participar" class="block py-3.5 border-b border-azul-marinho/[0.07] text-[15px] font-medium text-azul-marinho">Como participar</a>
+            <a href="{{ auth()->check() ? route('filament.membro.pages.dashboard') : route('filament.membro.auth.login') }}"
+               class="flex items-center gap-2 py-3.5 text-[15px] font-medium text-azul-marinho">
+                <x-phosphor-user-circle class="w-5 h-5" />
+                @auth
+                    Meu painel
+                @else
+                    Entrar / Criar conta
+                @endauth
+            </a>
             <a href="https://chat.whatsapp.com/JaWCta8t2DF9Af0zgIb8LB?mode=gi_t" target="_blank" rel="noopener"
                class="flex items-center justify-center gap-2 w-full mt-3.5 px-[18px] py-3 bg-azul-principal text-white text-sm font-semibold rounded-full">
                 Seja parte
